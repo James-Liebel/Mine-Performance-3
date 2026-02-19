@@ -15,12 +15,12 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-neutral-200 bg-neutral-50">
+    <footer className="border-t border-brand-100 bg-surface-muted">
       <div className="mx-auto max-w-7xl px-6 py-12 md:px-12 lg:px-24">
         <div className="flex flex-col gap-8 md:flex-row md:justify-between md:items-start">
           <div>
-            <p className="font-display font-bold text-neutral-900">{site.name}</p>
-            <p className="mt-1 text-sm text-neutral-600">{footer.tagline}</p>
+            <p className="font-display font-bold text-ink">{site.name}</p>
+            <p className="mt-1 text-sm text-ink-muted">{footer.tagline}</p>
           </div>
           <nav aria-label="Footer navigation">
             <ul className="flex flex-wrap gap-x-6 gap-y-2">
@@ -28,7 +28,7 @@ export function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-sm text-neutral-600 hover:text-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded"
+                    className="text-sm text-ink-muted hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded"
                   >
                     {label}
                   </Link>
@@ -37,7 +37,7 @@ export function Footer() {
             </ul>
           </nav>
         </div>
-        <div className="mt-8 pt-8 border-t border-neutral-200 text-sm text-neutral-500">
+        <div className="mt-8 pt-8 border-t border-brand-100 text-sm text-ink-muted">
           <span>{footer.legal}</span>
         </div>
       </div>

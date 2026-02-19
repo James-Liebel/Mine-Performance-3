@@ -35,14 +35,14 @@ export default function StartPage() {
   return (
     <div className="px-6 py-16 md:py-24 md:px-12 lg:px-24">
       <div className="max-w-2xl mx-auto">
-        <h1 className="font-display text-3xl md:text-4xl font-bold text-neutral-900">
+        <h1 className="font-display text-3xl md:text-4xl font-bold text-ink">
           {startWizard.title}
         </h1>
-        <p className="mt-4 text-lg text-orange-600 font-medium">{startWizard.lead}</p>
+        <p className="mt-4 text-lg text-brand-600 font-medium">{startWizard.lead}</p>
 
         {step === 1 && (
           <section className="mt-10" aria-labelledby="step1-title">
-            <h2 id="step1-title" className="text-xl font-semibold text-neutral-900">
+            <h2 id="step1-title" className="text-xl font-semibold text-ink">
               {startWizard.step1.title}
             </h2>
             <ul className="mt-6 flex flex-col gap-3">
@@ -52,7 +52,7 @@ export default function StartPage() {
                     type="button"
                     data-testid={`wizard-goal-${opt.id}`}
                     onClick={() => handleGoal(opt.id as GoalId)}
-                    className="w-full text-left px-5 py-4 rounded-xl border-2 border-neutral-200 bg-white hover:border-orange-400 hover:bg-orange-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 transition-colors"
+                    className="w-full text-left px-5 py-4 rounded-card border-2 border-brand-200 bg-white hover:border-brand-400 hover:bg-brand-50/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 transition-colors"
                   >
                     {opt.label}
                   </button>
@@ -64,7 +64,7 @@ export default function StartPage() {
 
         {step === 2 && (
           <section className="mt-10" aria-labelledby="step2-title">
-            <h2 id="step2-title" className="text-xl font-semibold text-neutral-900">
+            <h2 id="step2-title" className="text-xl font-semibold text-ink">
               {startWizard.step2.title}
             </h2>
             <ul className="mt-6 flex flex-col gap-3">
@@ -74,7 +74,7 @@ export default function StartPage() {
                     type="button"
                     data-testid={`wizard-age-${opt.id}`}
                     onClick={() => handleAge(opt.id as AgeId)}
-                    className="w-full text-left px-5 py-4 rounded-xl border-2 border-neutral-200 bg-white hover:border-orange-400 hover:bg-orange-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 transition-colors"
+                    className="w-full text-left px-5 py-4 rounded-card border-2 border-brand-200 bg-white hover:border-brand-400 hover:bg-brand-50/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 transition-colors"
                   >
                     {opt.label}
                   </button>
@@ -84,7 +84,7 @@ export default function StartPage() {
             <button
               type="button"
               onClick={() => setStep(1)}
-              className="mt-6 text-neutral-600 hover:text-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded"
+              className="mt-6 text-ink-muted hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
             >
               ← Back
             </button>
@@ -93,7 +93,7 @@ export default function StartPage() {
 
         {step === 3 && (
           <section className="mt-10" aria-labelledby="step3-title">
-            <h2 id="step3-title" className="text-xl font-semibold text-neutral-900">
+            <h2 id="step3-title" className="text-xl font-semibold text-ink">
               {startWizard.step3.title}
             </h2>
             <ul className="mt-6 flex flex-col gap-3">
@@ -103,7 +103,7 @@ export default function StartPage() {
                     type="button"
                     data-testid={`wizard-schedule-${opt.id}`}
                     onClick={() => handleSchedule(opt.id as ScheduleId)}
-                    className="w-full text-left px-5 py-4 rounded-xl border-2 border-neutral-200 bg-white hover:border-orange-400 hover:bg-orange-50/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 transition-colors"
+                    className="w-full text-left px-5 py-4 rounded-card border-2 border-brand-200 bg-white hover:border-brand-400 hover:bg-brand-50/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 transition-colors"
                   >
                     {opt.label}
                   </button>
@@ -113,7 +113,7 @@ export default function StartPage() {
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="mt-6 text-neutral-600 hover:text-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded"
+              className="mt-6 text-ink-muted hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
             >
               ← Back
             </button>
@@ -122,12 +122,12 @@ export default function StartPage() {
 
         {step === 'result' && (
           <section className="mt-10" aria-labelledby="result-title">
-            <h2 id="result-title" className="text-xl font-semibold text-neutral-900">
+            <h2 id="result-title" className="text-xl font-semibold text-ink">
               {startWizard.result.title}
             </h2>
-            <div className="mt-6 p-6 rounded-xl bg-neutral-50 border border-neutral-200">
-              <p className="font-medium text-neutral-900">{rec.program}</p>
-              <p className="mt-2 text-neutral-600">{rec.blurb}</p>
+            <div className="mt-6 p-6 rounded-card bg-surface-muted border border-brand-200">
+              <p className="font-medium text-ink">{rec.program}</p>
+              <p className="mt-2 text-ink-muted">{rec.blurb}</p>
             </div>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Button
@@ -142,13 +142,13 @@ export default function StartPage() {
                 {startWizard.result.ctaSecondary}
               </Button>
             </div>
-            <p className="mt-4 text-sm text-neutral-500">
+            <p className="mt-4 text-sm text-ink-muted">
               Next step: book an evaluation or browse programs. Contact us to get started.
             </p>
             <button
               type="button"
               onClick={() => { setStep(1); setGoal(null); setAge(null); setSchedule(null); }}
-              className="mt-6 text-neutral-600 hover:text-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded"
+              className="mt-6 text-ink-muted hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded"
             >
               Start over
             </button>

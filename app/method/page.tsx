@@ -11,18 +11,18 @@ export default function MethodPage() {
   return (
     <div className="px-6 py-20 md:px-12 lg:px-24">
       <div className="max-w-3xl mx-auto">
-        <h1 className="font-display text-3xl md:text-4xl font-bold text-neutral-900">
+        <h1 className="font-display text-3xl md:text-4xl font-bold text-ink">
           {methodPage.title}
         </h1>
-        <p className="mt-4 text-lg text-neutral-600">{methodPage.description}</p>
+        <p className="mt-4 text-lg text-ink-muted">{methodPage.description}</p>
         <ul className="mt-12 space-y-10" aria-label="Method steps">
           {methodPage.steps.map((step, i) => (
             <li key={step.title}>
-              <span className="font-display text-sm font-bold text-orange-500">
+              <span className="font-display text-sm font-bold text-brand-500">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <h2 className="font-display text-xl font-bold text-neutral-900 mt-1">{step.title}</h2>
-              <p className="mt-2 text-neutral-600">{step.body}</p>
+              <h2 className="font-display text-xl font-bold text-ink mt-1">{step.title}</h2>
+              <p className="mt-2 text-ink-muted">{step.body}</p>
             </li>
           ))}
         </ul>

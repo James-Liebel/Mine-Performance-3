@@ -22,11 +22,11 @@ const mainLinks = [
 export function Header() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-40 border-b border-neutral-200/80 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+    <header className="sticky top-0 z-40 border-b border-brand-100/80 bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/80">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-12 lg:px-24">
         <Link
           href="/"
-          className="font-display text-lg font-bold text-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded"
+          className="font-display text-lg font-bold text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded"
           aria-label={`${site.name} home`}
         >
           {site.name}
@@ -37,7 +37,7 @@ export function Header() {
               key={href}
               href={href}
               data-testid={`nav-${href.replace(/^\//, '') || 'home'}`}
-              className="text-sm font-medium text-neutral-600 hover:text-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded"
+              className="text-sm font-medium text-ink-muted hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 rounded"
             >
               {label}
             </Link>
@@ -45,7 +45,7 @@ export function Header() {
         </nav>
         <button
           type="button"
-          className="md:hidden p-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+          className="md:hidden p-2 rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -57,7 +57,7 @@ export function Header() {
       <div
         id="mobile-menu"
         className={cn(
-          'md:hidden border-t border-neutral-200 bg-white',
+          'md:hidden border-t border-brand-100 bg-surface',
           open ? 'block' : 'hidden'
         )}
         aria-hidden={!open}
@@ -67,7 +67,7 @@ export function Header() {
             <Link
               key={href}
               href={href}
-              className="py-2 text-neutral-700 hover:text-neutral-900 font-medium"
+              className="py-2 text-ink-muted hover:text-ink font-medium"
               onClick={() => setOpen(false)}
             >
               {label}
