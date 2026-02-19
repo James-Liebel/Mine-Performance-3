@@ -11,6 +11,7 @@ export const site = {
 
 export const nav = {
   home: 'Home',
+  start: 'Start Here',
   method: 'The Method',
   programs: 'Programs',
   coaches: 'Coaches',
@@ -119,6 +120,55 @@ export const contactPage = {
   cta: 'Book an Evaluation',
 } as const;
 
+/** Start Here wizard: goal → age/level → schedule → recommended program + next action */
+export const startWizard = {
+  title: 'Start Here',
+  lead: 'Answer a few questions and we’ll recommend the best path for you.',
+  step1: {
+    title: 'What’s your main goal?',
+    options: [
+      { id: 'evaluate', label: 'Get evaluated — I want to know where I stand and what to work on.' },
+      { id: 'stronger', label: 'Get stronger / improve performance.' },
+      { id: 'rehab', label: 'Return from injury or build back after time off.' },
+      { id: 'other', label: 'Something else — I’d like to talk it through.' },
+    ],
+  },
+  step2: {
+    title: 'Age / level',
+    options: [
+      { id: 'youth', label: 'Youth' },
+      { id: 'hs', label: 'High school' },
+      { id: 'college', label: 'College' },
+      { id: 'adult', label: 'Adult / rec' },
+      { id: 'any', label: 'Not sure' },
+    ],
+  },
+  step3: {
+    title: 'When do you want to train?',
+    options: [
+      { id: 'inseason', label: 'In-season (maintain / compete)' },
+      { id: 'offseason', label: 'Off-season (build)' },
+      { id: 'flexible', label: 'Flexible' },
+    ],
+  },
+  result: {
+    title: 'Your recommended next step',
+    ctaPrimary: 'Book an Evaluation',
+    ctaSecondary: 'View Programs',
+    /** Placeholder — needs client content. Map (goal, age, schedule) → program name + short blurb. */
+    recommendations: {
+      default: {
+        program: 'Performance Evaluation',
+        blurb: 'Start with an evaluation so we can build a plan around your goals and baseline.',
+      },
+      rehab: {
+        program: 'Rehab & Return-to-Sport',
+        blurb: 'Our return-to-throw and rehab pathway is assessment-driven and staged. Book an evaluation to get started.',
+      },
+    },
+  },
+} as const;
+
 export const ctaBar = {
   mobile: {
     primary: 'Book an Evaluation',
@@ -128,7 +178,7 @@ export const ctaBar = {
 
 export const footer = {
   tagline: 'Assessment-driven training and rehab.',
-  links: { method: 'The Method', programs: 'Programs', coaches: 'Coaches', facility: 'Facility', results: 'Results', events: 'Events', rehab: 'Rehab', contact: 'Contact' },
+  links: { start: 'Start Here', method: 'The Method', programs: 'Programs', coaches: 'Coaches', facility: 'Facility', results: 'Results', events: 'Events', rehab: 'Rehab', contact: 'Contact' },
   legal: 'Privacy & Terms',
   statstak: 'Powered by StatStak',
 } as const;

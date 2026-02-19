@@ -45,6 +45,10 @@ export default function ResultsPage() {
           <p className="mt-4 text-sm text-neutral-600">
             Before/after stories and metric definitions can be added here with client-approved copy.
           </p>
+          <h3 className="mt-6 font-semibold text-neutral-900">What good looks like</h3>
+          <p className="mt-2 text-sm text-neutral-600">
+            Placeholder — needs client content. Add age-band benchmarks or “typical ranges” for key metrics so athletes and parents understand context (e.g. velocity bands by age, strength standards).
+          </p>
         </section>
       </div>
     </div>

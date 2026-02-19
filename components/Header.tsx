@@ -8,12 +8,13 @@ import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 
 const mainLinks = [
-  { href: '/method', label: nav.method },
+  { href: '/start', label: nav.start },
   { href: '/programs', label: nav.programs },
   { href: '/coaches', label: nav.coaches },
-  { href: '/facility', label: nav.facility },
-  { href: '/results', label: nav.results },
   { href: '/events', label: nav.events },
+  { href: '/results', label: nav.results },
+  { href: '/method', label: nav.method },
+  { href: '/facility', label: nav.facility },
   { href: '/rehab', label: nav.rehab },
   { href: '/contact', label: nav.contact },
 ];

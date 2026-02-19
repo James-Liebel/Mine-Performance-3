@@ -2,12 +2,13 @@ import Link from 'next/link';
 import { footer, site } from '@/content/site-copy';
 
 const links = [
-  { href: '/method', label: footer.links.method },
+  { href: '/start', label: footer.links.start },
   { href: '/programs', label: footer.links.programs },
   { href: '/coaches', label: footer.links.coaches },
-  { href: '/facility', label: footer.links.facility },
-  { href: '/results', label: footer.links.results },
   { href: '/events', label: footer.links.events },
+  { href: '/results', label: footer.links.results },
+  { href: '/method', label: footer.links.method },
+  { href: '/facility', label: footer.links.facility },
   { href: '/rehab', label: footer.links.rehab },
   { href: '/contact', label: footer.links.contact },
 ];

@@ -15,6 +15,7 @@
     "security:check": "node scripts/security-check.js",
     "security:release": "node scripts/security-release.js",
     "crawl": "tsx scripts/crawl-brand.ts",
+    "explore": "tsx scripts/explore.ts",
     "extract-trainers": "tsx scripts/extract-trainers.ts"
   },
   "dependencies": {
