@@ -37,16 +37,8 @@ export function Footer() {
             </ul>
           </nav>
         </div>
-        <div className="mt-8 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row gap-4 justify-between items-center text-sm text-neutral-500">
+        <div className="mt-8 pt-8 border-t border-neutral-200 text-sm text-neutral-500">
           <span>{footer.legal}</span>
-          <a
-            href="https://statstak.io"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-neutral-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded"
-          >
-            {footer.statstak}
-          </a>
         </div>
       </div>
     </footer>

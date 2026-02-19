@@ -2,8 +2,6 @@ import { contactPage } from '@/content/site-copy';
 import { Button } from '@/components/Button';
 import type { Metadata } from 'next';
 
-const STATSTAK_BASE = 'https://mine-performance.statstak.io';
-
 export const metadata: Metadata = {
   title: 'Contact',
   description: contactPage.description,
@@ -19,17 +17,12 @@ export default function ContactPage() {
         <p className="mt-4 text-lg text-orange-600 font-medium">{contactPage.lead}</p>
         <p className="mt-4 text-neutral-600">{contactPage.description}</p>
         <div className="mt-12 flex flex-col gap-4">
-          <Button href={STATSTAK_BASE} variant="primary" size="lg" target="_blank" rel="noopener noreferrer">
+          <Button href="#book" variant="primary" size="lg">
             {contactPage.cta}
           </Button>
-          <a
-            href={STATSTAK_BASE}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-neutral-600 hover:text-neutral-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 rounded"
-          >
-            Go to Mine Performance on StatStak →
-          </a>
+          <p className="text-sm text-neutral-500">
+            Placeholder — needs client content. Add contact form, booking link, phone, or email here.
+          </p>
         </div>
       </div>
     </div>

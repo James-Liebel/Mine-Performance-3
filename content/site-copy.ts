@@ -95,9 +95,8 @@ export const resultsPage = {
 export const eventsPage = {
   title: 'Events',
   lead: 'Featured events and programming.',
-  description: 'Camps, clinics, and events at Mine Performance Academy. Full schedule and registration via StatStak.',
-  cta: 'View Full Schedule',
-  statstakUrl: 'https://mine-performance.statstak.io/events',
+  description: 'Camps, clinics, and events at Mine Performance Academy. Inquire for schedule and registration.',
+  cta: 'Inquire / Register',
 } as const;
 
 export const rehabPage = {
@@ -180,5 +179,4 @@ export const footer = {
   tagline: 'Assessment-driven training and rehab.',
   links: { start: 'Start Here', method: 'The Method', programs: 'Programs', coaches: 'Coaches', facility: 'Facility', results: 'Results', events: 'Events', rehab: 'Rehab', contact: 'Contact' },
   legal: 'Privacy & Terms',
-  statstak: 'Powered by StatStak',
 } as const;

@@ -46,8 +46,7 @@ test.describe('Smoke', () => {
     await expect(page.getByTestId('wizard-cta-book')).toBeVisible({ timeout: 5000 });
     await expect(page.getByTestId('wizard-cta-programs')).toBeVisible();
     const bookLink = page.getByTestId('wizard-cta-book');
-    await expect(bookLink).toHaveAttribute('href', 'https://mine-performance.statstak.io');
-    await expect(bookLink).toHaveAttribute('target', '_blank');
+    await expect(bookLink).toHaveAttribute('href', '/contact');
   });
 
   test('primary CTAs exist and are clickable', async ({ page }) => {
@@ -69,14 +68,13 @@ test.describe('Smoke', () => {
     await expect(page.getByRole('link', { name: /book an evaluation/i }).first()).toBeVisible({ timeout: 10_000 });
   });
 
-  test('StatStak deep links open in new tab', async ({ page }) => {
+  test('events and results CTAs link to contact', async ({ page }) => {
     await page.goto('/results', { waitUntil: 'domcontentloaded' });
     const leaderboard = page.getByRole('link', { name: /view leaderboard/i });
-    await expect(leaderboard).toHaveAttribute('target', '_blank', { timeout: 10_000 });
-    await expect(leaderboard).toHaveAttribute('href', 'https://mine-performance.statstak.io/leaderboard');
+    await expect(leaderboard).toHaveAttribute('href', '/contact', { timeout: 10_000 });
     await page.goto('/events', { waitUntil: 'domcontentloaded' });
-    const schedule = page.getByRole('link', { name: /view full schedule/i });
-    await expect(schedule).toHaveAttribute('target', '_blank', { timeout: 10_000 });
+    const schedule = page.getByRole('link', { name: /inquire|register/i });
+    await expect(schedule).toHaveAttribute('href', '/contact', { timeout: 10_000 });
   });
 
   test('404 for unknown route', async ({ page }) => {

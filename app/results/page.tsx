@@ -2,8 +2,6 @@ import { resultsPage } from '@/content/site-copy';
 import { Button } from '@/components/Button';
 import type { Metadata } from 'next';
 
-const STATSTAK_LEADERBOARD = 'https://mine-performance.statstak.io/leaderboard';
-
 export const metadata: Metadata = {
   title: 'Results',
   description: resultsPage.description,
@@ -24,14 +22,12 @@ export default function ResultsPage() {
             Leaderboard
           </h2>
           <p className="mt-2 text-neutral-600">
-            See current leaderboard and event results on StatStak.
+            Leaderboard and event results. Placeholder — add your own results feed or link when ready.
           </p>
           <Button
-            href={STATSTAK_LEADERBOARD}
+            href="/contact"
             variant="primary"
             className="mt-4"
-            target="_blank"
-            rel="noopener noreferrer"
           >
             {resultsPage.leaderboardCta}
           </Button>

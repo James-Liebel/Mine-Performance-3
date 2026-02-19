@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { startWizard } from '@/content/site-copy';
 import { Button } from '@/components/Button';
 
-const STATSTAK_BASE = 'https://mine-performance.statstak.io';
-
 type Step = 1 | 2 | 3 | 'result';
 type GoalId = 'evaluate' | 'stronger' | 'rehab' | 'other';
 type AgeId = 'youth' | 'hs' | 'college' | 'adult' | 'any';
@@ -133,11 +131,9 @@ export default function StartPage() {
             </div>
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <Button
-                href={STATSTAK_BASE}
+                href="/contact"
                 variant="primary"
                 size="lg"
-                target="_blank"
-                rel="noopener noreferrer"
                 data-testid="wizard-cta-book"
               >
                 {startWizard.result.ctaPrimary}
@@ -147,7 +143,7 @@ export default function StartPage() {
               </Button>
             </div>
             <p className="mt-4 text-sm text-neutral-500">
-              Booking and registration are handled through our partner platform. You’ll be taken to Mine Performance on StatStak.
+              Next step: book an evaluation or browse programs. Contact us to get started.
             </p>
             <button
               type="button"

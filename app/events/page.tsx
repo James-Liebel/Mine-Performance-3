@@ -21,11 +21,9 @@ export default function EventsPage() {
             Featured events can be listed here. Full schedule and registration live on StatStak.
           </p>
           <Button
-            href={eventsPage.statstakUrl}
+            href="/contact"
             variant="primary"
             className="mt-6"
-            target="_blank"
-            rel="noopener noreferrer"
           >
             {eventsPage.cta}
           </Button>

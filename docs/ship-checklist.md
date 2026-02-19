@@ -24,7 +24,7 @@ Build and release verification before deploying.
   - [ ] Primary CTAs exist and are clickable on home
   - [ ] Start Here wizard: goal → age → schedule → result with “Book an Evaluation” and “View Programs”
   - [ ] Primary CTA exists on /, /programs, /contact
-  - [ ] StatStak deep links (leaderboard, events) open in new tab with correct URLs
+  - [ ] Events and results CTAs link to /contact
   - [ ] 404 for unknown route
 
 ---
@@ -33,9 +33,9 @@ Build and release verification before deploying.
 
 - [ ] Nav order: Start Here, Programs, Coaches, Events, Results, The Method, Facility, Rehab, Contact
 - [ ] Footer includes Start Here and matches nav
-- [ ] “Book an Evaluation” (or equivalent) present in header/CTABar and points to StatStak or /contact
-- [ ] StatStak URLs correct: `https://mine-performance.statstak.io` (contact/booking), `/events`, `/leaderboard`
-- [ ] Placeholder copy labeled “Placeholder — needs client content” where applicable (e.g. results “what good looks like”, coach bios)
+- [ ] “Book an Evaluation” (or equivalent) present in header/CTABar and points to /contact
+- [ ] Events and results CTAs point to /contact (or your booking/registration URL when added)
+- [ ] Placeholder copy labeled “Placeholder — needs client content” where applicable (e.g. results “what good looks like”, coach bios, contact form)
 
 ---
 
@@ -57,11 +57,10 @@ Build and release verification before deploying.
 
 ---
 
-## StatStak preservation
+## Booking & contact
 
-- [ ] No changes that break registration or booking flows on StatStak
-- [ ] Deep links to StatStak open in new tab and use correct base URL
-- [ ] Contact page CTA goes to StatStak (or intended booking URL)
+- [ ] Contact page has working form, booking link, or contact details (replace placeholder as needed)
+- [ ] Primary CTAs (“Book an Evaluation”) go to /contact or your booking URL
 
 ---
 
