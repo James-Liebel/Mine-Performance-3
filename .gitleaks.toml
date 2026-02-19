@@ -1,0 +1,23 @@
+# Gitleaks config for secret scanning. Run: gitleaks detect --no-git --source .
+# See https://github.com/gitleaks/gitleaks
+
+title = "Mine Performance Academy"
+
+[extend]
+useDefault = true
+
+# Allowlisted paths (no secret patterns reported)
+[allowlist]
+paths = [
+  '''\.next/''',
+  '''node_modules/''',
+  '''package-lock\.json''',
+  '''\.git/''',
+  '''artifacts/''',
+  '''\.env\.example''',
+]
+regexes = [
+  '''NEXT_PUBLIC_SITE_URL''',
+  '''https://mine-performance\.statstak\.io''',
+  '''https://statstak\.io''',
+]

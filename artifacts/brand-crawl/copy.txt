@@ -1,0 +1,45 @@
+--- home (https://mine-performance.statstak.io/) ---
+Baseline
+Login
+event
+25% 25%
+(Note: home timed out on networkidle; minimal visible shell observed.)
+
+--- trainers (https://mine-performance.statstak.io/trainers) ---
+Baseline
+flip_camera_android
+Home
+Scheduling
+Leaderboard
+Login
+Filter by category
+Website links
+Privacy policy
+User agreement
+Reset password
+Support
+Hours
+Contact info
+More contact info
+25% 25%
+
+--- events (https://mine-performance.statstak.io/events) ---
+Baseline
+Login
+Filter by category
+Search
+Website links
+Privacy policy
+User agreement
+Reset password
+Support
+Hours
+Contact info
+More contact info
+25% 25%
+
+--- leaderboard (https://mine-performance.statstak.io/leaderboard) ---
+(Crawl screenshot saved; copy extraction had eval conflict—see screenshots.)
+
+--- Summary (Discovery) ---
+Current site is a StatStak-hosted shell with minimal on-page copy: Baseline branding, Login, Scheduling, Leaderboard, Events, policy/support links. No long-form narrative, coach bios, or facility content visible. Opportunity: full premium narrative, coach bios, facility, method, and rehab positioning to be created net-new.
