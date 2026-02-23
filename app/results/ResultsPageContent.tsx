@@ -51,17 +51,17 @@ export function ResultsPageContent() {
   }
 
   return (
-    <div className="page">
-      <section className="page-home-section alt-bg">
+    <div className="page page-results-gallery">
+      <section className="page-home-section alt-bg results-context-panel" data-testid="results-heading-block">
         <div className="container">
-          <h1><EditableContent contentKey="results_heading" fallback="College commits" as="span" /></h1>
-          <p className="section-sub" style={{ maxWidth: '640px' }}>
+          <h1 data-testid="results-heading"><EditableContent contentKey="results_heading" fallback="College commits" as="span" /></h1>
+          <p className="section-sub results-context-text" style={{ maxWidth: '640px' }}>
             <EditableContent contentKey="results_sub" fallback="Athletes from our facility who have committed to play at the next level. We're proud of every one of them." as="span" />
           </p>
         </div>
       </section>
 
-      <section className="page-home-section">
+      <section className="page-home-section results-highlight-block">
         <div className="container">
           <h2><EditableContent contentKey="results_athletes_heading" fallback="Athletes & colleges" as="span" /></h2>
           {collegeCommits.length === 0 ? (
@@ -107,7 +107,7 @@ export function ResultsPageContent() {
         </div>
       </section>
 
-      <section className="page-home-section alt-bg">
+      <section className="page-home-section alt-bg results-highlight-block">
         <div className="container">
           <h2><EditableContent contentKey="results_endorsements_heading" fallback="Player endorsements" as="span" /></h2>
           <p className="section-sub" style={{ maxWidth: '640px', marginBottom: '1.5rem' }}>

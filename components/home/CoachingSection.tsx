@@ -5,7 +5,7 @@ import { EditableContent } from '@/components/EditableContent';
 
 export function CoachingSection() {
   return (
-    <section className="page-home-section">
+    <section className="page-home-section story-module" data-testid="home-coaches">
       <div className="container">
         <h2>
           <EditableContent contentKey="coaching_heading" fallback="Our coaching team" as="span" />

@@ -13,7 +13,7 @@ const PROGRAM_KEYS = [
 
 export function StoryMethod() {
   return (
-    <section className="story-module alt-bg" aria-labelledby="method-heading">
+    <section className="story-module alt-bg story-module-method" aria-labelledby="method-heading" data-testid="story-method">
       <div className="container">
         <span className="story-module-label">
           <EditableContent contentKey="story_method_label" fallback="The Method" as="span" />

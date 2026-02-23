@@ -1376,6 +1376,12 @@ h4 { font-size: 1.1rem; font-weight: 600; }
   margin-left: 0.5rem;
 }
 
+.nav-cta-primary-wrap { display: none; }
+.nav-cta-primary { white-space: nowrap; }
+@media (min-width: 768px) {
+  .nav-cta-primary-wrap { display: list-item; }
+}
+
 .nav-item-secondary .nav-link {
   color: var(--text-muted);
   font-size: 0.85rem;
@@ -1910,6 +1916,103 @@ input[type='radio'] {
   max-width: 56ch;
   line-height: 1.7;
   color: var(--text-muted);
+}
+
+/* Editorial story-arc layout (MP3) — split-screen / asymmetric on desktop */
+.page-home-editorial .hero-editorial {
+  padding: clamp(5rem, 14vw, 10rem) 0;
+}
+.page-home-editorial .hero-editorial h1 {
+  font-size: clamp(2.75rem, 7vw, 4.5rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.page-home-editorial .hero-editorial .hero-sub {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  max-width: 42ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.editorial-split {
+  display: block;
+}
+@media (min-width: 900px) {
+  .editorial-split .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1100px;
+  }
+  .editorial-split .editorial-content { min-width: 0; }
+  .editorial-split .editorial-aside {
+    min-width: 0;
+    min-height: 280px;
+    background: var(--surface-elevated);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  .story-module-method.editorial-split .container { direction: rtl; }
+  .story-module-method.editorial-split .container > * { direction: ltr; }
+}
+
+/* About page — premium coach bios (MP3) */
+.page-about-editorial .coach-grid-bios {
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 640px) {
+  .page-about-editorial .coach-grid-bios {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    max-width: none;
+  }
+}
+.page-about-editorial .coach-grid-bios .coach-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+.page-about-editorial .coach-grid-bios .coach-image-wrap {
+  aspect-ratio: 16 / 10;
+}
+.page-about-editorial .coach-grid-bios .coach-card-body {
+  padding: 1.75rem;
+}
+
+/* Results page — proof gallery (MP3) */
+.page-results-gallery .results-context-panel {
+  padding: var(--section-padding) 0;
+  border-bottom: 1px solid var(--border);
+}
+.page-results-gallery .results-context-text {
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+.page-results-gallery .results-highlight-block {
+  padding: var(--section-padding) 0;
+}
+.page-results-gallery .results-highlight-block .container {
+  max-width: 1000px;
+}
+@media (min-width: 768px) {
+  .page-results-gallery .results-commits-list {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+  .page-results-gallery .results-endorsements-grid {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
 }
 
 /* Program cards */

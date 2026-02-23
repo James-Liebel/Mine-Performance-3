@@ -127,7 +127,7 @@ export function CoachesClient({
 
   return (
     <>
-      <div className="coach-grid" style={{ marginTop: '1.5rem' }}>
+      <div className="coach-grid coach-grid-bios" style={{ marginTop: '1.5rem' }} data-testid="coaches-list">
         {coaches.map((c, i) => (
           <article key={c.id} className="card card-elevated coach-card">
             {canEdit && (
@@ -175,14 +175,16 @@ export function CoachesClient({
               )}
             </div>
             <div className="coach-card-body">
-              <h3 style={{ marginTop: 0, marginBottom: '0.25rem' }}>{c.name}</h3>
-              <p
-                className="coach-title"
-                style={{ color: 'var(--accent)', fontWeight: 600, margin: '0 0 0.5rem' }}
-              >
-                {c.title}
-              </p>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.5, flex: 1 }}>
+              <h3 style={{ marginTop: 0, marginBottom: '0.5rem' }}>{c.name}</h3>
+              <div className="coach-credentials-row" role="list">
+                {c.title && (
+                  <span className="coach-credential-chip" role="listitem">{c.title}</span>
+                )}
+                {c.specialty && (
+                  <span className="coach-credential-chip" role="listitem">{c.specialty}</span>
+                )}
+              </div>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.5, flex: 1, margin: 0 }}>
                 {c.bio}
               </p>
             </div>
@@ -284,6 +286,27 @@ export function CoachesClient({
           display: flex;
           flex-direction: column;
           flex: 1;
+        }
+        .coach-credentials-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+          margin-bottom: 0.75rem;
+          list-style: none;
+          padding: 0;
+          margin-left: 0;
+          margin-right: 0;
+        }
+        .coach-credential-chip {
+          font-size: 0.7rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          padding: 0.25rem 0.6rem;
+          border-radius: 4px;
+          background: var(--accent-muted);
+          color: var(--accent);
+          border: 1px solid var(--border);
         }
         .coach-image-wrap {
           width: 100%;

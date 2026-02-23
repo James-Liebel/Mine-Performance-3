@@ -6,7 +6,7 @@ import { EditableContent } from '@/components/EditableContent';
 
 export function StoryPlace() {
   return (
-    <section className="story-module alt-bg cta-block centered" aria-labelledby="place-heading">
+    <section className="story-module alt-bg cta-block centered story-module-place" aria-labelledby="place-heading" data-testid="home-facility">
       <div className="container">
         <span className="story-module-label">
           <EditableContent contentKey="story_place_label" fallback="The Place" as="span" />

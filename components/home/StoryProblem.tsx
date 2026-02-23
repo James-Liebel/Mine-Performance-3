@@ -8,7 +8,7 @@ import { SITE_HOURS } from '@/lib/config';
 
 export function StoryProblem() {
   return (
-    <section className="hero story-module" aria-labelledby="problem-heading">
+    <section className="hero story-module story-module-problem" aria-labelledby="problem-heading" data-testid="story-problem">
       <div className="container">
         <p className="hero-tag" aria-hidden>
           <EditableContent contentKey="hero_tag" fallback="Florence, KY — Baseball training" as="span" />

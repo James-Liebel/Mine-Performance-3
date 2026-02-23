@@ -7,7 +7,7 @@ const defaultSubtitle = 'Mine Performance Academy combines expert coaching, meas
 
 export function Hero() {
   return (
-    <section className="hero" aria-labelledby="hero-heading">
+    <section className="hero hero-editorial" aria-labelledby="hero-heading" data-testid="home-hero">
       <div className="container">
         <p className="hero-tag" aria-hidden>
           <EditableContent contentKey="hero_tag" fallback="Florence, KY — Now accepting athletes" as="span" />

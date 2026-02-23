@@ -20,7 +20,7 @@ test.describe('Navigation', () => {
     await expect(page).toHaveURL(/\/contact/);
 
     await page.goto('/');
-    await nav.getByRole('link', { name: /Login · Sign up/i }).click();
+    await page.getByTestId('nav-primary-cta').click();
     await expect(page).toHaveURL(/\/login/);
 
     await page.goto('/');

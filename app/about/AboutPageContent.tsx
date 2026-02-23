@@ -23,10 +23,10 @@ export function AboutPageContent() {
   };
 
   return (
-    <div className="page">
+    <div className="page page-about-editorial">
       <section className="page-home-section alt-bg">
         <div className="container">
-          <h1>
+          <h1 data-testid="about-heading">
             <EditableContent contentKey="about_page_heading" fallback="About Mine Performance Academy" as="span" />
           </h1>
           <p className="section-sub" style={{ maxWidth: '640px' }}>
@@ -35,7 +35,7 @@ export function AboutPageContent() {
         </div>
       </section>
 
-      <section id="coaching-staff" className="page-home-section alt-bg">
+      <section id="coaching-staff" className="page-home-section alt-bg" data-testid="coaching-staff">
         <div className="container">
           <h2>
             <EditableContent contentKey="about_coaching_heading" fallback="Coaching staff" as="span" />

@@ -20,7 +20,7 @@ const FEATURE_KEYS = [
 
 export function StoryProof() {
   return (
-    <section className="story-module" aria-labelledby="proof-heading">
+    <section className="story-module story-module-proof" aria-labelledby="proof-heading" data-testid="story-proof">
       <div className="container">
         <span className="story-module-label">
           <EditableContent contentKey="story_proof_label" fallback="The Proof" as="span" />
