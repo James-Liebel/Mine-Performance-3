@@ -18,9 +18,6 @@ export function StoryPlace() {
           <EditableContent contentKey="story_place_body" fallback="Batting cages, pitching lab, weight room, and assessment area. We serve athletes from 10U through high school and beyond — lessons, memberships, camps, and open sessions year-round." as="span" />
         </p>
         <div className="cta-row" style={{ justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/contact" className="btn btn-secondary">
-            Visit us
-          </Link>
           <Link href="/member-registration" className="btn btn-secondary">
             View plans &amp; pricing
           </Link>

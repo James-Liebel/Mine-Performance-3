@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Filters', () => {
   test('about page coaching section has coach list', async ({ page }) => {
     await page.goto('/about#coaching-staff');
-    await expect(page.locator('#coaching-staff h2')).toContainText('Coaching staff');
+    await expect(page.getByRole('heading', { name: 'Coaching staff' })).toBeVisible();
     await expect(page.locator('.coach-card:not(.coach-card-add)')).toHaveCount(6);
     await expect(page.locator('.coach-card-body h3').first()).toBeVisible();
   });

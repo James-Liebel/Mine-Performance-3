@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import Link from 'next/link';
+import { PrimaryCTA } from '@/components/PrimaryCTA';
 import Image from 'next/image';
 import { EditableContent } from '@/components/EditableContent';
 import type { CollegeCommit, Endorsement, CommitDivision } from '@/lib/results-store';
@@ -126,13 +126,8 @@ export function ResultsPageContent() {
       </section>
 
       <section className="page-home-section">
-        <div className="container cta-row">
-          <Link href="/member-registration" className="btn btn-primary">
-            View memberships
-          </Link>
-          <Link href="/contact" className="btn btn-secondary">
-            Contact us
-          </Link>
+        <div className="container">
+          <PrimaryCTA />
         </div>
       </section>
 
