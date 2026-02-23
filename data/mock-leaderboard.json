@@ -1,0 +1,130 @@
+{
+  "metric": "Pitching Velo",
+  "unit": "mph",
+  "ageBand": "14U",
+  "lastUpdated": "2026-02-15",
+  "rows": [
+    {
+      "rank": 1,
+      "name": "Alex R.",
+      "value": 88,
+      "percentile": 99
+    },
+    {
+      "rank": 2,
+      "name": "Jordan M.",
+      "value": 86,
+      "percentile": 95
+    },
+    {
+      "rank": 3,
+      "name": "Sam T.",
+      "value": 85,
+      "percentile": 92
+    },
+    {
+      "rank": 4,
+      "name": "Casey L.",
+      "value": 84,
+      "percentile": 88
+    },
+    {
+      "rank": 5,
+      "name": "Morgan K.",
+      "value": 83,
+      "percentile": 85
+    },
+    {
+      "rank": 6,
+      "name": "Riley J.",
+      "value": 82,
+      "percentile": 80
+    },
+    {
+      "rank": 7,
+      "name": "Jamie P.",
+      "value": 81,
+      "percentile": 75
+    },
+    {
+      "rank": 8,
+      "name": "Quinn W.",
+      "value": 80,
+      "percentile": 70
+    },
+    {
+      "rank": 9,
+      "name": "Demo Athlete",
+      "value": 79,
+      "percentile": 65,
+      "isDemo": true
+    },
+    {
+      "rank": 10,
+      "name": "Taylor H.",
+      "value": 78,
+      "percentile": 60
+    }
+  ],
+  "demoAthlete": {
+    "name": "Demo Athlete",
+    "metrics": [
+      {
+        "id": "pitching-velo",
+        "label": "Pitching Velo",
+        "value": 79,
+        "unit": "mph",
+        "trend": "up",
+        "vsLast": "+2"
+      },
+      {
+        "id": "spin-rate",
+        "label": "Spin Rate",
+        "value": 2100,
+        "unit": "rpm",
+        "trend": "neutral",
+        "vsLast": "0"
+      },
+      {
+        "id": "exit-velo",
+        "label": "Exit Velo",
+        "value": 87,
+        "unit": "mph",
+        "trend": "up",
+        "vsLast": "+3"
+      }
+    ],
+    "progress": [
+      {
+        "date": "2025-09",
+        "pitchingVelo": 75,
+        "exitVelo": 82
+      },
+      {
+        "date": "2025-11",
+        "pitchingVelo": 76,
+        "exitVelo": 84
+      },
+      {
+        "date": "2026-01",
+        "pitchingVelo": 77,
+        "exitVelo": 86
+      },
+      {
+        "date": "2026-02",
+        "pitchingVelo": 79,
+        "exitVelo": 87
+      }
+    ],
+    "nextSession": {
+      "date": "2026-02-22",
+      "time": "4:00 PM",
+      "coach": "Travis Clark",
+      "type": "Pitching Velo"
+    },
+    "recommendedAction": {
+      "label": "Book a Pitch Design session",
+      "reason": "Your velo is on track — adding movement and spin design is your natural next step."
+    }
+  }
+}

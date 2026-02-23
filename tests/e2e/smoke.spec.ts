@@ -1,84 +1,52 @@
 import { test, expect } from '@playwright/test';
 
+/**
+ * Smoke tests: home loads, each primary route renders, primary CTAs exist and are clickable.
+ */
 test.describe('Smoke', () => {
-  test('home loads', async ({ page }) => {
+  test('home loads and shows hero', async ({ page }) => {
     await page.goto('/');
-    await expect(page).toHaveTitle(/Mine Performance Academy/);
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await expect(page.locator('h1')).toContainText(/train smarter|training, quantified/i);
+    await expect(page.getByRole('link', { name: /View memberships|Book an Evaluation/i }).first()).toBeVisible();
+    await expect(page.getByTestId('chat-widget-toggle')).toBeVisible();
   });
 
-  test('nav works', async ({ page }) => {
-    await page.goto('/');
-    await page.waitForLoadState('networkidle');
-    const methodLink = page.locator('a[href="/method"]').first();
-    await methodLink.click();
-    await page.waitForURL(/\/method/, { timeout: 10_000 });
-    await expect(page.getByRole('heading', { level: 1, name: /method/i })).toBeVisible();
-  });
-
-  test('primary routes render', async ({ page }) => {
+  test('each primary route renders without error', async ({ page }) => {
     const routes = [
-      { path: '/', h1: /train|smarter|peak/i },
-      { path: '/start', h1: /start here/i },
-      { path: '/method', h1: /method/i },
-      { path: '/programs', h1: /programs/i },
-      { path: '/coaches', h1: /coaches/i },
-      { path: '/facility', h1: /facility/i },
-      { path: '/results', h1: /results/i },
-      { path: '/events', h1: /events/i },
-      { path: '/rehab', h1: /rehab/i },
-      { path: '/contact', h1: /contact/i },
+      { path: '/', h1: /train smarter|training, quantified/i },
+      { path: '/member-registration', h1: 'Training options' },
+      { path: '/about', h1: /About Mine Performance/i },
+      { path: '/events', h1: /Events|Scheduling/i },
+      { path: '/login', h1: 'Login' },
+      { path: '/contact', h1: 'Contact' },
     ];
     for (const { path, h1 } of routes) {
-      await page.goto(path, { waitUntil: 'domcontentloaded' });
-      await expect(page.getByRole('heading', { level: 1 })).toHaveText(h1, { timeout: 10_000 });
+      await page.goto(path);
+      await expect(page.locator('h1')).toContainText(h1);
     }
   });
 
-  test('Start Here wizard works end-to-end', async ({ page }) => {
-    await page.goto('/start', { waitUntil: 'domcontentloaded' });
-    await expect(page.getByRole('heading', { level: 1, name: /start here/i })).toBeVisible();
-    await page.getByTestId('wizard-goal-evaluate').click();
-    await expect(page.getByRole('heading', { level: 2, name: /age \/ level/i })).toBeVisible({ timeout: 5000 });
-    await page.getByTestId('wizard-age-hs').click();
-    await expect(page.getByRole('heading', { level: 2, name: /when do you want to train/i })).toBeVisible({ timeout: 5000 });
-    await page.getByTestId('wizard-schedule-offseason').click();
-    await expect(page.getByTestId('wizard-cta-book')).toBeVisible({ timeout: 5000 });
-    await expect(page.getByTestId('wizard-cta-programs')).toBeVisible();
-    const bookLink = page.getByTestId('wizard-cta-book');
-    await expect(bookLink).toHaveAttribute('href', '/contact');
+  test('404 shows not-found content', async ({ page }) => {
+    await page.goto('/nonexistent-page-404');
+    await expect(page.getByRole('heading', { name: /page not found/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /go home/i })).toBeVisible();
   });
 
-  test('primary CTAs exist and are clickable', async ({ page }) => {
+  test('primary CTAs are clickable', async ({ page }) => {
     await page.goto('/');
-    const bookEval = page.getByTestId('cta-book-eval');
-    await expect(bookEval).toBeVisible();
-    await expect(bookEval).toHaveAttribute('href', '/contact');
-    const viewPrograms = page.getByTestId('cta-view-programs');
-    await expect(viewPrograms).toBeVisible();
-    await expect(viewPrograms).toHaveAttribute('href', '/programs');
+    await page.getByRole('link', { name: /View memberships|Book an Evaluation/i }).first().click();
+    await expect(page).toHaveURL(/\/(member-registration|start|login)/);
+
+    await page.goto('/about#coaching-staff');
+    await expect(page.getByTestId('page-primary-cta')).toBeVisible();
+    await expect(page.getByRole('link', { name: /Contact us/i }).first()).toHaveAttribute('href', /\/contact/);
   });
 
-  test('primary CTA exists on key pages', async ({ page }) => {
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.getByTestId('cta-book-eval')).toBeVisible({ timeout: 10_000 });
-    await page.goto('/programs', { waitUntil: 'domcontentloaded' });
-    await expect(page.getByRole('link', { name: /book an evaluation|view programs/i }).first()).toBeVisible({ timeout: 10_000 });
-    await page.goto('/contact', { waitUntil: 'domcontentloaded' });
-    await expect(page.getByRole('link', { name: /book an evaluation/i }).first()).toBeVisible({ timeout: 10_000 });
-  });
-
-  test('events and results CTAs link to contact', async ({ page }) => {
-    await page.goto('/results', { waitUntil: 'domcontentloaded' });
-    const leaderboard = page.getByRole('link', { name: /view leaderboard/i });
-    await expect(leaderboard).toHaveAttribute('href', '/contact', { timeout: 10_000 });
-    await page.goto('/events', { waitUntil: 'domcontentloaded' });
-    const schedule = page.getByRole('link', { name: /inquire|register/i });
-    await expect(schedule).toHaveAttribute('href', '/contact', { timeout: 10_000 });
-  });
-
-  test('404 for unknown route', async ({ page }) => {
-    const res = await page.goto('/no-such-page-404');
-    expect(res?.status()).toBe(404);
+  test('primary CTA exists on marketing pages that use it', async ({ page }) => {
+    const paths = ['/about', '/events'];
+    for (const path of paths) {
+      await page.goto(path);
+      await expect(page.getByTestId('page-primary-cta')).toBeVisible();
+    }
   });
 });

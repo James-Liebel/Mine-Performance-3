@@ -1,70 +1,68 @@
-import type { Metadata } from 'next';
-import { Syne, DM_Sans } from 'next/font/google';
+import { Oswald, Barlow, Playfair_Display, Inter } from 'next/font/google';
 import './globals.css';
-import { Header } from '@/components/Header';
+import '@/lib/env';
+import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
-import { CTABar } from '@/components/CTABar';
-import { site } from '@/content/site-copy';
+import { StickyCTA } from '@/components/StickyCTA';
+import { ChatWidget } from '@/components/ChatWidget';
+import { ClientProviders } from '@/components/ClientProviders';
+import { defaultMetadata, getLocalBusinessJsonLd } from '@/lib/seo';
 
-const syne = Syne({
-  subsets: ['latin'],
-  variable: '--font-syne',
-  display: 'swap',
-});
+export const metadata = defaultMetadata;
 
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-});
-
-export const metadata: Metadata = {
-  title: {
-    default: `${site.name} | Assessment-Driven Training & Rehab`,
-    template: `%s | ${site.name}`,
-  },
-  description: site.tagline,
-  openGraph: {
-    title: site.name,
-    description: site.tagline,
-    type: 'website',
-  },
-  twitter: { card: 'summary_large_image' },
-  robots: { index: true, follow: true },
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover' as const,
 };
 
-const localBusinessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'SportsActivityLocation',
-  name: site.name,
-  description: site.tagline,
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://mine-performance.example.com',
-};
+/** Theme options: load all so client can switch via site content */
+const oswald = Oswald({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-display-oswald',
+  display: 'swap',
+});
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-display-playfair',
+  display: 'swap',
+});
+const barlow = Barlow({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-sans-barlow',
+  display: 'swap',
+});
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-sans-inter',
+  display: 'swap',
+});
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
-      <head>
+    <html lang="en" className={`${oswald.variable} ${playfair.variable} ${barlow.variable} ${inter.variable}`} data-theme="v3">
+      <body className="font-theme-body">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(getLocalBusinessJsonLd()) }}
         />
-      </head>
-      <body className="min-h-screen bg-surface font-body text-ink antialiased">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-500 focus:text-white focus:rounded"
-        >
-          Skip to main content
-        </a>
-        <Header />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <CTABar />
+        <ClientProviders>
+          <Nav />
+          <main id="main-content" tabIndex={-1}>
+            {children}
+          </main>
+          <StickyCTA />
+          <ChatWidget />
+          <Footer />
+        </ClientProviders>
       </body>
     </html>
   );

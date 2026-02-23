@@ -1,0 +1,12 @@
+export { Hero } from './Hero';
+export { StatsStrip } from './StatsStrip';
+export { FeaturesSection } from './FeaturesSection';
+export { ProgramsSection } from './ProgramsSection';
+export { CoachingSection } from './CoachingSection';
+export { AboutFacilitySection } from './AboutFacilitySection';
+export { TestimonialsSection } from './TestimonialsSection';
+export { CTASection } from './CTASection';
+export { StoryProblem } from './StoryProblem';
+export { StoryMethod } from './StoryMethod';
+export { StoryProof } from './StoryProof';
+export { StoryPlace } from './StoryPlace';
