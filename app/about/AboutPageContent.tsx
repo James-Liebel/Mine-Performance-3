@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { CoachesClient, type Coach } from '@/app/coaches/CoachesClient';
+import { PrimaryCTA } from '@/components/PrimaryCTA';
 import { EditableContent } from '@/components/EditableContent';
 
 export function AboutPageContent() {
@@ -72,13 +72,8 @@ export function AboutPageContent() {
               <EditableContent contentKey="about_coaching_sub" fallback="Our coaches bring D1 playing experience, certifications, and hundreds of athletes trained. They're focused on measurable progress, smart programming, and long-term development." as="span" />
             </p>
             <CoachesClient coaches={coaches} onCoachChange={refetchCoaches} />
-            <div className="cta-row" style={{ marginTop: '2rem' }}>
-              <Link href="/member-registration" className="btn btn-primary" data-testid="page-primary-cta">
-                View memberships
-              </Link>
-              <Link href="/contact" className="btn btn-secondary">
-                Contact us
-              </Link>
+            <div style={{ marginTop: '2rem' }}>
+              <PrimaryCTA />
             </div>
           </main>
         </div>

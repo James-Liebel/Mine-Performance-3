@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   SITE_PHONE,
   SITE_EMAIL,
@@ -43,7 +46,10 @@ const YouTubeIcon = () => (
 );
 
 export function Footer() {
+  const pathname = usePathname();
   const hasSocial = SOCIAL_INSTAGRAM || SOCIAL_FACEBOOK || SOCIAL_X || SOCIAL_YOUTUBE;
+  const showLocation = pathname !== '/contact';
+
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
@@ -95,20 +101,22 @@ export function Footer() {
           <Link href="/results"><EditableContent contentKey="footer_link_results" fallback="College commits" as="span" /></Link>
           <Link href="/login"><EditableContent contentKey="footer_link_login" fallback="Login" as="span" /></Link>
         </div>
-        <div className="footer-links-group">
-          <h4 className="footer-heading">
-            <EditableContent contentKey="footer_heading_location" fallback="Location & hours" as="span" />
-          </h4>
-          <p className="footer-address">
-            <EditableContent contentKey="contact_address" fallback={SITE_ADDRESS} as="span" />
-          </p>
-          <a href={`tel:${SITE_PHONE.replace(/\D/g, '')}`}><EditableContent contentKey="contact_phone" fallback={SITE_PHONE} as="span" /></a>
-          <a href={`mailto:${SITE_EMAIL}`}><EditableContent contentKey="contact_email" fallback={SITE_EMAIL} as="span" /></a>
-          <ul className="footer-hours" aria-label="Hours">
-            <li><EditableContent contentKey="footer_hours_line_0" fallback={SITE_HOURS[0]} as="span" /></li>
-            <li><EditableContent contentKey="footer_hours_line_1" fallback={SITE_HOURS[1]} as="span" /></li>
-          </ul>
-        </div>
+        {showLocation && (
+          <div className="footer-links-group">
+            <h4 className="footer-heading">
+              <EditableContent contentKey="footer_heading_location" fallback="Location & hours" as="span" />
+            </h4>
+            <p className="footer-address">
+              <EditableContent contentKey="contact_address" fallback={SITE_ADDRESS} as="span" />
+            </p>
+            <a href={`tel:${SITE_PHONE.replace(/\D/g, '')}`}><EditableContent contentKey="contact_phone" fallback={SITE_PHONE} as="span" /></a>
+            <a href={`mailto:${SITE_EMAIL}`}><EditableContent contentKey="contact_email" fallback={SITE_EMAIL} as="span" /></a>
+            <ul className="footer-hours" aria-label="Hours">
+              <li><EditableContent contentKey="footer_hours_line_0" fallback={SITE_HOURS[0]} as="span" /></li>
+              <li><EditableContent contentKey="footer_hours_line_1" fallback={SITE_HOURS[1]} as="span" /></li>
+            </ul>
+          </div>
+        )}
       </div>
       <div className="container footer-bottom">
         <p>&copy; {new Date().getFullYear()} <EditableContent contentKey="footer_copyright" fallback="Mine Performance Academy. All rights reserved." as="span" /></p>
