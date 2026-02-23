@@ -1,33 +1,32 @@
-/* Mine Performance Academy — V3: editorial/cinematic sports aesthetic. Accent from brand (logo white). */
+/* Mine Performance Academy — MP3: Cinematic premium. Bold typography, editorial storytelling, premium spacing. */
 :root {
-  --bg: #0a0b0d;
-  --bg-subtle: #0f1114;
-  --surface: #15181c;
-  --surface-elevated: #1c2026;
-  --surface-hover: #232931;
-  --text: #f4f5f7;
-  --text-muted: #8b94a4;
-  --accent: #f4f5f7;
+  --bg: #050608;
+  --bg-subtle: #0a0c0f;
+  --surface: #0f1216;
+  --surface-elevated: #161b21;
+  --surface-hover: #1c2229;
+  --text: #f0f2f5;
+  --text-muted: #7d8590;
+  --accent: #e8eaed;
   --accent-hover: #ffffff;
-  --accent-muted: rgba(244, 245, 247, 0.12);
-  --border: #262b33;
-  --success: #22c55e;
-  /* Softer scheduling slot outlines */
-  --slot-outline-open: #5a9f6a;
-  --slot-outline-full: #b86b6b;
-  --radius: 8px;
-  --radius-lg: 12px;
+  --accent-muted: rgba(232, 234, 237, 0.14);
+  --border: #21262d;
+  --success: #3fb950;
+  --slot-outline-open: #238636;
+  --slot-outline-full: #da3633;
+  --radius: 6px;
+  --radius-lg: 10px;
   --font-sans: var(--font-sans-var, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif);
-  --container: min(1100px, 100vw - 2rem);
-  --announce-bg: #15181e;
-  --btn-primary-bg: #f8fafc;
-  --btn-primary-text: #0f172a;
-  --section-padding: clamp(3rem, 6vw, 5rem);
-  --hero-padding: clamp(4rem, 10vw, 6rem);
-  --type-hero: clamp(2.25rem, 5vw, 3.5rem);
-  --type-h1: clamp(1.75rem, 3.5vw, 2.5rem);
-  --type-h2: clamp(1.35rem, 2.5vw, 1.85rem);
-  --type-h3: clamp(1.15rem, 2vw, 1.35rem);
+  --container: min(1200px, 100vw - 3rem);
+  --announce-bg: #0f1216;
+  --btn-primary-bg: #e8eaed;
+  --btn-primary-text: #050608;
+  --section-padding: clamp(4rem, 8vw, 6rem);
+  --hero-padding: clamp(5rem, 12vw, 8rem);
+  --type-hero: clamp(2.5rem, 6vw, 4rem);
+  --type-h1: clamp(1.9rem, 4vw, 2.75rem);
+  --type-h2: clamp(1.5rem, 3vw, 2rem);
+  --type-h3: clamp(1.2rem, 2.2vw, 1.45rem);
   --touch-target: 44px;
   --safe-area-top: env(safe-area-inset-top, 0);
   --safe-area-bottom: env(safe-area-inset-bottom, 0);
@@ -72,6 +71,7 @@ body {
 a {
   color: var(--accent);
   text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
 a:hover {

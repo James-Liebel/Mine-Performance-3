@@ -48,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${oswald.variable} ${playfair.variable} ${barlow.variable} ${inter.variable}`} data-theme="v3">
+    <html lang="en" className={`${oswald.variable} ${playfair.variable} ${barlow.variable} ${inter.variable}`} data-theme="cinematic">
       <body className="font-theme-body">
         <script
           type="application/ld+json"
