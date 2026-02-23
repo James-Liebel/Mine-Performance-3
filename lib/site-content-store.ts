@@ -16,7 +16,7 @@ export const SITE_CONTENT_DEFAULTS: Record<string, string> = {
   hero_sub: '',
   hero_space_offerings: 'Batting cages, pitching lab, weight room, assessment area.',
   hero_train_rent_line: 'Book a rental by the hour, or get a membership and do training with our programs — choose what fits.',
-  hero_title: 'Baseball training. Data-driven. See the results.',
+  hero_title: 'Mine Performance Academy',
   site_tagline: 'Baseball training. Data-driven. See the results.',
   hero_subtitle: `${SITE_NAME} combines expert coaching, measurable progress tracking, and structured programs — memberships, scheduling for events and camps, and lab and cage rentals so athletes and parents always know where they stand and what comes next.`,
   features_heading: 'Why athletes choose Mine Performance',

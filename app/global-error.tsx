@@ -19,7 +19,7 @@ export default function GlobalError({
             style={{
               marginTop: '1rem',
               padding: '0.5rem 1rem',
-              background: '#ea580c',
+              background: '#111827',
               color: 'white',
               border: 'none',
               borderRadius: '0.5rem',

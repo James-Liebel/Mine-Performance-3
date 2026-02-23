@@ -11,6 +11,8 @@ import { CreditsExplainer } from '@/components/CreditsExplainer';
 
 const MEMBER_REG_CALLBACK = '/member-registration';
 
+type ProgramTab = 'adult' | 'youth' | 'remote';
+
 interface ModalState {
   open: boolean;
   membership: Membership | null;
@@ -20,6 +22,7 @@ interface ModalState {
 export default function MemberRegistrationPage() {
   const { data: session } = useSession();
   const isLoggedIn = !!session?.user;
+  const [activeTab, setActiveTab] = useState<ProgramTab>('adult');
   const [memberships, setMemberships] = useState<Membership[]>(MEMBERSHIPS);
   const [modal, setModal] = useState<ModalState>({
     open: false,
@@ -74,70 +77,83 @@ export default function MemberRegistrationPage() {
         </div>
       </section>
 
-      <div className="container training-options-container">
-        <section className="credits-explainer-section credits-explainer-section--compact" style={{ marginBottom: '1rem' }}>
+      <div className="container training-options-container training-options-tabbed">
+        <div className="program-tabs" role="tablist" aria-label="Program categories">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'adult'}
+            aria-controls="panel-adult"
+            id="tab-adult"
+            className={`program-tab ${activeTab === 'adult' ? 'program-tab--active' : ''}`}
+            onClick={() => setActiveTab('adult')}
+          >
+            Adult (10U+)
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'youth'}
+            aria-controls="panel-youth"
+            id="tab-youth"
+            className={`program-tab ${activeTab === 'youth' ? 'program-tab--active' : ''}`}
+            onClick={() => setActiveTab('youth')}
+          >
+            Youth (under 10U)
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'remote'}
+            aria-controls="panel-remote"
+            id="tab-remote"
+            className={`program-tab ${activeTab === 'remote' ? 'program-tab--active' : ''}`}
+            onClick={() => setActiveTab('remote')}
+          >
+            Remote
+          </button>
+        </div>
+
+        <p className="training-options-listings-intro text-muted" style={{ marginBottom: '1.25rem', fontSize: '0.95rem' }}>
+          <EditableContent contentKey="member_reg_listings_intro" fallback="Click a plan for details and pricing." as="span" />
+        </p>
+
+        {activeTab === 'adult' && (
+          <section role="tabpanel" id="panel-adult" aria-labelledby="tab-adult" className="training-options-section">
+            <h2 className="training-options-section-title">
+              <EditableContent contentKey="member_reg_adult_title" fallback="Adult (10U and older)" as="span" />
+            </h2>
+            <p className="training-options-section-desc text-muted">
+              <EditableContent contentKey="member_reg_adult_desc" fallback="Skill development, performance training, and recovery." as="span" />
+            </p>
+            <TrainingOptionsGrid memberships={adultMemberships} onSelect={openModal} isLoggedIn={isLoggedIn} />
+          </section>
+        )}
+        {activeTab === 'youth' && (
+          <section role="tabpanel" id="panel-youth" aria-labelledby="tab-youth" className="training-options-section">
+            <h2 className="training-options-section-title">
+              Youth (under 10U)
+            </h2>
+            <p className="training-options-section-desc text-muted">
+              <EditableContent contentKey="member_reg_youth_remote_desc" fallback="Youth athletes under 10U." as="span" />
+            </p>
+            <TrainingOptionsGrid memberships={youthMemberships} onSelect={openModal} isLoggedIn={isLoggedIn} />
+          </section>
+        )}
+        {activeTab === 'remote' && (
+          <section role="tabpanel" id="panel-remote" aria-labelledby="tab-remote" className="training-options-section">
+            <h2 className="training-options-section-title">
+              Remote
+            </h2>
+            <p className="training-options-section-desc text-muted">
+              Remote training programs.
+            </p>
+            <TrainingOptionsGrid memberships={remoteMemberships} onSelect={openModal} isLoggedIn={isLoggedIn} />
+          </section>
+        )}
+
+        <section className="credits-explainer-section credits-explainer-section--compact" style={{ marginTop: '1.5rem', marginBottom: '1rem' }}>
           <CreditsExplainer compact />
-        </section>
-        <p className="training-options-offerings-intro text-muted" style={{ marginBottom: '0.75rem', fontSize: '0.95rem' }}>
-          <EditableContent contentKey="member_reg_offerings_intro" fallback="Select a category to jump to plans:" as="span" />
-        </p>
-        <section className="training-options-section programs-summary-section programs-summary-section--minimal">
-          <div className="membership-categories-row">
-            <div className="membership-category-block">
-              <h3 className="training-options-section-title">Adult (10U+)</h3>
-              <ul className="membership-category-list" role="list">
-                {adultMemberships.map((m) => (
-                  <li key={m.id}>
-                    <Link href={`#membership-${m.id}`}>{m.name}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="membership-category-block">
-              <h3 className="training-options-section-title">Youth (under 10U)</h3>
-              <ul className="membership-category-list" role="list">
-                {youthMemberships.map((m) => (
-                  <li key={m.id}>
-                    <Link href={`#membership-${m.id}`}>{m.name}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="membership-category-block">
-              <h3 className="training-options-section-title">Remote</h3>
-              <ul className="membership-category-list" role="list">
-                {remoteMemberships.map((m) => (
-                  <li key={m.id}>
-                    <Link href={`#membership-${m.id}`}>{m.name}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <p className="training-options-listings-intro text-muted" style={{ marginTop: '1.25rem', marginBottom: '1rem', fontSize: '0.95rem' }}>
-          <EditableContent contentKey="member_reg_listings_intro" fallback="Plans below match the categories above — click a plan for details and pricing." as="span" />
-        </p>
-
-        <section className="training-options-section">
-          <h2 className="training-options-section-title">
-            <EditableContent contentKey="member_reg_adult_title" fallback="Adult (10U and older)" as="span" />
-          </h2>
-          <p className="training-options-section-desc text-muted">
-            <EditableContent contentKey="member_reg_adult_desc" fallback="Skill development, performance training, and recovery." as="span" />
-          </p>
-          <TrainingOptionsGrid memberships={adultMemberships} onSelect={openModal} isLoggedIn={isLoggedIn} />
-        </section>
-
-        <section className="training-options-section">
-          <h2 className="training-options-section-title">
-            <EditableContent contentKey="member_reg_youth_remote_title" fallback="Youth & remote (under 10U)" as="span" />
-          </h2>
-          <p className="training-options-section-desc text-muted">
-            <EditableContent contentKey="member_reg_youth_remote_desc" fallback="Youth athletes under 10U and remote training programs." as="span" />
-          </p>
-          <TrainingOptionsGrid memberships={youthAndRemoteMemberships} onSelect={openModal} isLoggedIn={isLoggedIn} />
         </section>
 
         <p className="training-options-help text-muted">

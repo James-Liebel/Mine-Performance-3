@@ -169,7 +169,7 @@ export function ChatWidget() {
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Close chat' : 'Open chat'}
         aria-expanded={open}
-        data-testid="chat-widget-toggle"
+        data-testid="chat-widget-launcher"
         style={{
           position: 'fixed',
           bottom: '1.25rem',

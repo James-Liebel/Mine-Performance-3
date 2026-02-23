@@ -61,73 +61,67 @@ export function ResultsPageContent() {
         </div>
       </section>
 
-      <section className="page-home-section results-highlight-block">
-        <div className="container">
-          <h2><EditableContent contentKey="results_athletes_heading" fallback="Athletes & colleges" as="span" /></h2>
-          {collegeCommits.length === 0 ? (
-            <p className="text-muted"><EditableContent contentKey="results_no_commits" fallback="No college commits listed yet. Check back soon." as="span" /></p>
-          ) : (
-            <>
-              {DIVISION_ORDER.map((division) => {
-                const list = commitsByDivision[division];
-                if (list.length === 0) return null;
-                return (
-                  <div key={division} className="results-commits-division" style={{ marginBottom: '2rem' }}>
-                    <h3 className="results-commits-division-title" style={{ fontSize: '1.15rem', marginBottom: '1rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-                      {DIVISION_LABELS[division]}
-                    </h3>
-                    <ul className="results-commits-list" role="list">
-                      {list.map((c) => (
-                        <li key={c.id} className="card card-elevated results-commit-card results-commit-card--interactive">
-                          <div className="results-commit-inner">
+      <section className="page-home-section results-editorial-split">
+        <div className="container results-split-inner">
+          <div className="results-split-col results-split-endorsements">
+            <h2><EditableContent contentKey="results_endorsements_heading" fallback="Player endorsements" as="span" /></h2>
+            <p className="section-sub" style={{ marginBottom: '1.25rem' }}>
+              <EditableContent contentKey="results_endorsements_sub" fallback="What athletes and families say about training at Mine Performance." as="span" />
+            </p>
+            {endorsements.length === 0 ? (
+              <p className="text-muted"><EditableContent contentKey="results_no_endorsements" fallback="No endorsements yet. Check back soon." as="span" /></p>
+            ) : (
+              <div className="results-endorsements-stack">
+                {endorsements.map((e) => (
+                  <blockquote key={e.id} className="card card-elevated results-endorsement-card results-endorsement-card--interactive">
+                    <p className="results-endorsement-quote">&ldquo;{e.quote}&rdquo;</p>
+                    <footer className="results-endorsement-footer">
+                      <cite className="results-endorsement-name">{e.athleteName}</cite>
+                      {e.college && <span className="results-endorsement-college">{e.college}</span>}
+                    </footer>
+                  </blockquote>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="results-split-col results-split-commits">
+            <h2><EditableContent contentKey="results_athletes_heading" fallback="Athletes & colleges" as="span" /></h2>
+            {collegeCommits.length === 0 ? (
+              <p className="text-muted"><EditableContent contentKey="results_no_commits" fallback="No college commits listed yet. Check back soon." as="span" /></p>
+            ) : (
+              <div className="results-commits-table-wrap">
+                {DIVISION_ORDER.map((division) => {
+                  const list = commitsByDivision[division];
+                  if (list.length === 0) return null;
+                  return (
+                    <div key={division} className="results-commits-division">
+                      <h3 className="results-commits-division-title">{DIVISION_LABELS[division]}</h3>
+                      <ul className="results-commits-list results-commits-list--compact" role="list">
+                        {list.map((c) => (
+                          <li key={c.id} className="results-commit-row">
                             {c.imageUrl && (
                               <div className="results-commit-image-wrap">
-                                <Image src={c.imageUrl} alt={c.athleteName ? `${c.athleteName} college` : 'College logo'} width={48} height={48} className="results-commit-image" unoptimized />
+                                <Image src={c.imageUrl} alt="" width={36} height={36} className="results-commit-image" unoptimized />
                               </div>
                             )}
                             <div className="results-commit-main">
                               <span className="results-commit-name">{c.athleteName}</span>
                               <span className="results-commit-college">{c.college}</span>
                             </div>
-                          </div>
-                          {(c.year || c.position) && (
-                            <div className="results-commit-meta">
-                              {c.position && <span className="results-commit-position">{c.position}</span>}
-                              {c.year && <span className="results-commit-year">{c.year}</span>}
-                            </div>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
-            </>
-          )}
-        </div>
-      </section>
-
-      <section className="page-home-section alt-bg results-highlight-block">
-        <div className="container">
-          <h2><EditableContent contentKey="results_endorsements_heading" fallback="Player endorsements" as="span" /></h2>
-          <p className="section-sub" style={{ maxWidth: '640px', marginBottom: '1.5rem' }}>
-            <EditableContent contentKey="results_endorsements_sub" fallback="What athletes and families say about training at Mine Performance." as="span" />
-          </p>
-          {endorsements.length === 0 ? (
-            <p className="text-muted"><EditableContent contentKey="results_no_endorsements" fallback="No endorsements yet. Check back soon." as="span" /></p>
-          ) : (
-            <div className="results-endorsements-grid">
-              {endorsements.map((e) => (
-                <blockquote key={e.id} className="card card-elevated results-endorsement-card results-endorsement-card--interactive">
-                  <p className="results-endorsement-quote">&ldquo;{e.quote}&rdquo;</p>
-                  <footer className="results-endorsement-footer">
-                    <cite className="results-endorsement-name">{e.athleteName}</cite>
-                    {e.college && <span className="results-endorsement-college">{e.college}</span>}
-                  </footer>
-                </blockquote>
-              ))}
-            </div>
-          )}
+                            {(c.year || c.position) && (
+                              <span className="results-commit-meta-inline">
+                                {[c.position, c.year].filter(Boolean).join(' · ')}
+                              </span>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
       </section>
 

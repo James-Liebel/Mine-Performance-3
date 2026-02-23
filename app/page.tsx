@@ -1,5 +1,4 @@
 import {
-  Hero,
   StoryProblem,
   StoryMethod,
   StoryProof,
@@ -10,7 +9,6 @@ import {
 export default function HomePage() {
   return (
     <div className="page-home page-home-editorial">
-      <Hero />
       <StoryProblem />
       <StoryMethod />
       <StoryProof />

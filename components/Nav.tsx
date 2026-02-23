@@ -63,11 +63,6 @@ export function Nav() {
                 </Link>
               </li>
             )}
-            <li className="nav-item nav-item-cta nav-cta-primary-wrap">
-              <Link href="/start" className="nav-cta-primary btn btn-primary" data-testid="nav-primary-cta">
-                Book an Evaluation
-              </Link>
-            </li>
             <li className="nav-item nav-item-cta">
               {status === 'loading' ? (
                 <span className="nav-cta btn btn-primary" aria-hidden style={{ opacity: 0.7 }}>

@@ -13,11 +13,11 @@ export interface Coach {
 }
 
 const INITIALS_COLORS = [
-  'linear-gradient(135deg, #c9a227 0%, #d4af37 100%)',
-  'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)',
-  'linear-gradient(135deg, #059669 0%, #10b981 100%)',
-  'linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%)',
-  'linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%)',
+  'linear-gradient(135deg, #e5e7eb 0%, #f9fafb 100%)',
+  'linear-gradient(135deg, #111827 0%, #020617 100%)',
+  'linear-gradient(135deg, #166534 0%, #22c55e 100%)',
+  'linear-gradient(135deg, #4b5563 0%, #111827 100%)',
+  'linear-gradient(135deg, #6b21a8 0%, #4c1d95 100%)',
 ];
 
 function getInitials(name: string): string {

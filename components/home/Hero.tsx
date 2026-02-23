@@ -13,7 +13,7 @@ export function Hero() {
           <EditableContent contentKey="hero_tag" fallback="Florence, KY — Now accepting athletes" as="span" />
         </p>
         <h1 id="hero-heading">
-          <EditableContent contentKey="hero_title" fallback="Train smarter. Get stronger. See the data." as="span" />
+          <EditableContent contentKey="hero_title" fallback="Mine Performance Academy" as="span" />
         </h1>
         <p className="hero-sub">
           <EditableContent contentKey="hero_subtitle" fallback={defaultSubtitle} as="span" />

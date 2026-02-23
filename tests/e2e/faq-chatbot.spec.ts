@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test';
 test.describe('FAQ Chatbot (via widget)', () => {
   test('open chat, ask known question, verify answer', async ({ page }) => {
     await page.goto('/');
-    await page.getByTestId('chat-widget-toggle').click();
+    await page.getByTestId('chat-widget-launcher').click();
     const input = page.getByTestId('chat-input');
     await expect(input).toBeVisible();
     await input.fill('How do I get started?');
@@ -21,7 +21,7 @@ test.describe('FAQ Chatbot (via widget)', () => {
 
   test('suggested question chips populate input', async ({ page }) => {
     await page.goto('/');
-    await page.getByTestId('chat-widget-toggle').click();
+    await page.getByTestId('chat-widget-launcher').click();
     const chip = page.getByTestId('chat-suggested-question').first();
     await expect(chip).toBeVisible();
     await chip.click();
@@ -33,7 +33,7 @@ test.describe('FAQ Chatbot (via widget)', () => {
 
   test('low confidence shows related topics and contact link', async ({ page }) => {
     await page.goto('/');
-    await page.getByTestId('chat-widget-toggle').click();
+    await page.getByTestId('chat-widget-launcher').click();
     const input = page.getByTestId('chat-input');
     await input.fill('xyzzy nothing related');
     await page.getByTestId('chat-send').click();

@@ -24,7 +24,7 @@ export interface ProgressChartProps {
   height?: number;
 }
 
-const DEFAULT_COLORS = ['#ea580c', '#22c55e', '#3b82f6'];
+const DEFAULT_COLORS = ['#111827', '#22c55e', '#6b7280'];
 
 export function ProgressChart({ data, series, height = 260 }: ProgressChartProps) {
   return (

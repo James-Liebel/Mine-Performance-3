@@ -20,11 +20,11 @@ test.describe('Navigation', () => {
     await expect(page).toHaveURL(/\/contact/);
 
     await page.goto('/');
-    await page.getByTestId('nav-primary-cta').click();
+    await nav.getByRole('link', { name: 'Login · Sign up' }).click();
     await expect(page).toHaveURL(/\/login/);
 
     await page.goto('/');
-    await expect(page.getByTestId('chat-widget-toggle')).toBeVisible();
+    await expect(page.getByTestId('chat-widget-launcher')).toBeVisible();
   });
 
   test('nav works on mobile (toggle menu)', async ({ page }) => {

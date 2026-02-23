@@ -5,7 +5,7 @@ import { IMAGES } from '@/lib/images';
 export function Logo() {
   const logo = IMAGES.logo;
   return (
-    <Link href="/" className="nav-logo">
+    <Link href="/" className="nav-logo" data-testid="brand-wordmark">
       <span className="nav-logo-mark" aria-hidden>
         <Image
           src={logo.src}
@@ -16,7 +16,7 @@ export function Logo() {
           style={{ objectFit: 'contain' }}
         />
       </span>
-      <span className="nav-logo-text">Mine Performance</span>
+      <span className="nav-logo-text">Mine Performance Academy</span>
     </Link>
   );
 }

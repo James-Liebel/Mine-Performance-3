@@ -8,7 +8,7 @@ test.describe('Smoke', () => {
     await page.goto('/');
     await expect(page.locator('h1')).toContainText(/train smarter|training, quantified|Mine Performance/i);
     await expect(page.getByRole('link', { name: /View memberships|Book an Evaluation/i }).first()).toBeVisible();
-    await expect(page.getByTestId('chat-widget-toggle')).toBeVisible();
+    await expect(page.getByTestId('chat-widget-launcher')).toBeVisible();
   });
 
   test('each primary route renders without error', async ({ page }) => {

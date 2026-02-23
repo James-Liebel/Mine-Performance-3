@@ -108,91 +108,14 @@ export default function RentalsPage() {
         </div>
       </section>
 
-      <div className="container rentals-container">
-        <section className="rentals-section">
-          <h2 className="rentals-section-title">
-            <EditableContent contentKey="rentals_choose_date_heading" fallback="Choose a date" as="span" />
-          </h2>
-          <p className="rentals-section-desc text-muted">
-            <EditableContent contentKey="rentals_choose_date_desc" fallback="Select a day on the calendar, then pick a resource and time slot below." as="span" />
-          </p>
-
-          <div className="rentals-calendar-card card card-elevated">
-            <div className="rentals-calendar-header">
-              <h3 className="rentals-calendar-month">{monthName} {year}</h3>
-              <div className="rentals-calendar-nav">
-                <button
-                  type="button"
-                  className="rentals-calendar-nav-btn"
-                  onClick={prevMonth}
-                  aria-label="Previous month"
-                >
-                  ‹
-                </button>
-                <button
-                  type="button"
-                  className="rentals-calendar-nav-btn"
-                  onClick={() => {
-                    setCalendarView(new Date(today.getFullYear(), today.getMonth(), 1));
-                    setSelectedDate(new Date());
-                    setSelectedSlot(null);
-                  }}
-                  aria-label="Go to current month"
-                >
-                  Today
-                </button>
-                <button
-                  type="button"
-                  className="rentals-calendar-nav-btn"
-                  onClick={nextMonth}
-                  aria-label="Next month"
-                >
-                  ›
-                </button>
-              </div>
-            </div>
-            <div className="rentals-calendar-grid">
-              {DAYS.map((d) => (
-                <div key={d} className="rentals-calendar-dow" aria-hidden>
-                  {d}
-                </div>
-              ))}
-              {blanks.map((_, i) => (
-                <div key={`b-${i}`} className="rentals-calendar-day rentals-calendar-day--blank" />
-              ))}
-              {days.map((day) => {
-                const past = isDayPast(day);
-                const selected = isDaySelected(day);
-                const todayCell = isDayToday(day);
-                return (
-                  <button
-                    key={day}
-                    type="button"
-                    className={`rentals-calendar-day rentals-calendar-day--clickable ${
-                      selected ? 'rentals-calendar-day--selected' : ''
-                    } ${todayCell ? 'rentals-calendar-day--today' : ''} ${past ? 'rentals-calendar-day--past' : ''}`}
-                    onClick={() => handleDayClick(day)}
-                    disabled={past}
-                    aria-label={past ? `Past date` : `Select ${monthName} ${day}`}
-                    aria-pressed={selected}
-                  >
-                    {day}
-                  </button>
-                );
-              })}
-            </div>
-            {selectedDate && (
-              <p className="rentals-calendar-selected text-muted" aria-live="polite">
-                Selected: <strong>{formatDateForDisplay(selectedDate)}</strong>
-              </p>
-            )}
+      <div className="container rentals-container rentals-editorial-order rentals-step-layout">
+        <section className="rentals-section rentals-step" aria-labelledby="rentals-step-1-heading">
+          <div className="rentals-step-header">
+            <span className="rentals-step-num" aria-hidden>1</span>
+            <h2 id="rentals-step-1-heading" className="rentals-section-title">
+              <EditableContent contentKey="rentals_pick_resource_heading" fallback="Pick a resource and time" as="span" />
+            </h2>
           </div>
-        </section>
-
-        <section className="rentals-section">
-          <h2 className="rentals-section-title">
-            <EditableContent contentKey="rentals_pick_resource_heading" fallback="Pick a resource and time" as="span" />
-          </h2>
           <p className="rentals-section-desc text-muted">
             {selectedDate ? (
               <EditableContent
@@ -202,7 +125,7 @@ export default function RentalsPage() {
                 as="span"
               />
             ) : (
-              <EditableContent contentKey="rentals_pick_resource_desc_no_date" fallback="Select a date above first." as="span" />
+              <EditableContent contentKey="rentals_pick_resource_desc_no_date" fallback="Select a date below first." as="span" />
             )}
           </p>
 
@@ -304,12 +227,95 @@ export default function RentalsPage() {
                 <div className="rentals-sidebar-empty">
                   <p className="text-muted">
                     {!selectedDate
-                      ? 'Select a date on the calendar above.'
+                      ? 'Select a date on the calendar below.'
                       : 'Choose a time slot for your selected date.'}
                   </p>
                 </div>
               )}
             </aside>
+          </div>
+        </section>
+
+        <section className="rentals-section rentals-step" aria-labelledby="rentals-step-2-heading">
+          <div className="rentals-step-header">
+            <span className="rentals-step-num" aria-hidden>2</span>
+            <h2 id="rentals-step-2-heading" className="rentals-section-title">
+              <EditableContent contentKey="rentals_choose_date_heading" fallback="Choose a date" as="span" />
+            </h2>
+          </div>
+          <p className="rentals-section-desc text-muted">
+            <EditableContent contentKey="rentals_choose_date_desc" fallback="Select a day on the calendar, then pick a resource and time slot above." as="span" />
+          </p>
+
+          <div className="rentals-calendar-card card card-elevated">
+            <div className="rentals-calendar-header">
+              <h3 className="rentals-calendar-month">{monthName} {year}</h3>
+              <div className="rentals-calendar-nav">
+                <button
+                  type="button"
+                  className="rentals-calendar-nav-btn"
+                  onClick={prevMonth}
+                  aria-label="Previous month"
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  className="rentals-calendar-nav-btn"
+                  onClick={() => {
+                    setCalendarView(new Date(today.getFullYear(), today.getMonth(), 1));
+                    setSelectedDate(new Date());
+                    setSelectedSlot(null);
+                  }}
+                  aria-label="Go to current month"
+                >
+                  Today
+                </button>
+                <button
+                  type="button"
+                  className="rentals-calendar-nav-btn"
+                  onClick={nextMonth}
+                  aria-label="Next month"
+                >
+                  ›
+                </button>
+              </div>
+            </div>
+            <div className="rentals-calendar-grid">
+              {DAYS.map((d) => (
+                <div key={d} className="rentals-calendar-dow" aria-hidden>
+                  {d}
+                </div>
+              ))}
+              {blanks.map((_, i) => (
+                <div key={`b-${i}`} className="rentals-calendar-day rentals-calendar-day--blank" />
+              ))}
+              {days.map((day) => {
+                const past = isDayPast(day);
+                const selected = isDaySelected(day);
+                const todayCell = isDayToday(day);
+                return (
+                  <button
+                    key={day}
+                    type="button"
+                    className={`rentals-calendar-day rentals-calendar-day--clickable ${
+                      selected ? 'rentals-calendar-day--selected' : ''
+                    } ${todayCell ? 'rentals-calendar-day--today' : ''} ${past ? 'rentals-calendar-day--past' : ''}`}
+                    onClick={() => handleDayClick(day)}
+                    disabled={past}
+                    aria-label={past ? `Past date` : `Select ${monthName} ${day}`}
+                    aria-pressed={selected}
+                  >
+                    {day}
+                  </button>
+                );
+              })}
+            </div>
+            {selectedDate && (
+              <p className="rentals-calendar-selected text-muted" aria-live="polite">
+                Selected: <strong>{formatDateForDisplay(selectedDate)}</strong>
+              </p>
+            )}
           </div>
         </section>
       </div>
