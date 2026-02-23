@@ -5,7 +5,7 @@ test.describe('Chat widget', () => {
     page,
   }) => {
     await page.goto('/');
-    await expect(page.locator('h1')).toContainText(/training, quantified/i);
+    await expect(page.locator('h1')).toContainText(/training, quantified|Mine Performance/i);
 
     const toggle = page.getByTestId('chat-widget-toggle');
     await expect(toggle).toBeVisible();

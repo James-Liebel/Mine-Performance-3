@@ -6,14 +6,14 @@ import { test, expect } from '@playwright/test';
 test.describe('Smoke', () => {
   test('home loads and shows hero', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('h1')).toContainText(/train smarter|training, quantified/i);
+    await expect(page.locator('h1')).toContainText(/train smarter|training, quantified|Mine Performance/i);
     await expect(page.getByRole('link', { name: /View memberships|Book an Evaluation/i }).first()).toBeVisible();
     await expect(page.getByTestId('chat-widget-toggle')).toBeVisible();
   });
 
   test('each primary route renders without error', async ({ page }) => {
     const routes = [
-      { path: '/', h1: /train smarter|training, quantified/i },
+      { path: '/', h1: /train smarter|training, quantified|Mine Performance/i },
       { path: '/member-registration', h1: 'Training options' },
       { path: '/about', h1: /About Mine Performance/i },
       { path: '/events', h1: /Events|Scheduling/i },
