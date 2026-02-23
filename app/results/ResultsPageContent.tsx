@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { EditableContent } from '@/components/EditableContent';
 import type { CollegeCommit, Endorsement, CommitDivision } from '@/lib/results-store';
 
@@ -81,7 +82,7 @@ export function ResultsPageContent() {
                           <div className="results-commit-inner">
                             {c.imageUrl && (
                               <div className="results-commit-image-wrap">
-                                <img src={c.imageUrl} alt="" className="results-commit-image" />
+                                <Image src={c.imageUrl} alt={c.athleteName ? `${c.athleteName} college` : 'College logo'} width={48} height={48} className="results-commit-image" unoptimized />
                               </div>
                             )}
                             <div className="results-commit-main">

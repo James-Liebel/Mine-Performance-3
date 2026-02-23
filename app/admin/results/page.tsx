@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { CollegeCommit, Endorsement, CommitDivision } from '@/lib/results-store';
 
 const DIVISION_OPTIONS: { value: CommitDivision; label: string }[] = [
@@ -86,7 +87,7 @@ export default function AdminResultsPage() {
                 <tr key={c.id}>
                   <td className="admin-cell--muted">
                     {c.imageUrl ? (
-                      <img src={c.imageUrl} alt="" style={{ width: 36, height: 36, objectFit: 'contain', borderRadius: 4 }} />
+                      <Image src={c.imageUrl} alt="" width={36} height={36} style={{ objectFit: 'contain', borderRadius: 4 }} unoptimized />
                     ) : (
                       '—'
                     )}
@@ -216,6 +217,7 @@ function CommitModal({
   const [year, setYear] = useState(commit?.year ?? '');
   const [position, setPosition] = useState(commit?.position ?? '');
   const [imageUrl, setImageUrl] = useState(commit?.imageUrl ?? '');
+  const [previewError, setPreviewError] = useState(false);
   const [saving, setSaving] = useState(false);
 
   const save = async () => {
@@ -276,10 +278,10 @@ function CommitModal({
         <label className="editable-content-modal-label">Position (optional)</label>
         <input type="text" className="form-input" value={position} onChange={(e) => setPosition(e.target.value)} placeholder="e.g. RHP, OF" />
         <label className="editable-content-modal-label">College / mascot image URL (optional)</label>
-        <input type="url" className="form-input" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="https://…" />
-        {imageUrl && (
+        <input type="url" className="form-input" value={imageUrl} onChange={(e) => { setImageUrl(e.target.value); setPreviewError(false); }} placeholder="https://…" />
+        {imageUrl && !previewError && (
           <div style={{ marginTop: '0.5rem' }}>
-            <img src={imageUrl} alt="Preview" style={{ maxWidth: 80, maxHeight: 80, objectFit: 'contain', borderRadius: 4, border: '1px solid var(--border)' }} onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }} />
+            <Image src={imageUrl} alt="College / mascot preview" width={80} height={80} style={{ maxWidth: 80, maxHeight: 80, objectFit: 'contain', borderRadius: 4, border: '1px solid var(--border)' }} unoptimized onError={() => setPreviewError(true)} />
           </div>
         )}
         <div className="editable-content-modal-actions" style={{ marginTop: '1rem' }}>
