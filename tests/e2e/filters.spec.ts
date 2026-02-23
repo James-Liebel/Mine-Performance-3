@@ -5,7 +5,7 @@ test.describe('Filters', () => {
     await page.goto('/about#coaching-staff');
     await expect(page.locator('#coaching-staff h2')).toContainText('Coaching staff');
     await expect(page.locator('.coach-card:not(.coach-card-add)')).toHaveCount(6);
-    await expect(page.locator('.coach-title').first()).toBeVisible();
+    await expect(page.locator('.coach-card-body h3').first()).toBeVisible();
   });
 
   test('results page has college commits and CTAs', async ({ page }) => {
