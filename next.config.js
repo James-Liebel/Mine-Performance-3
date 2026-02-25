@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
+const isGhPages = process.env.GITHUB_PAGES_DEPLOY === '1';
+const basePath = process.env.BASE_PATH || '';
+
 const nextConfig = {
   reactStrictMode: true,
+  ...(isGhPages && { output: 'export' }),
+  ...(basePath && { basePath, assetPrefix: basePath }),
+  ...(!isGhPages && {
   async headers() {
     return [
       {
@@ -32,6 +38,7 @@ const nextConfig = {
       },
     ];
   },
+  }),
 };
 
 module.exports = nextConfig;

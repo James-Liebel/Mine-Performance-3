@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "cross-env GITHUB_PAGES_DEPLOY=1 BASE_PATH=/Mine-Performance-3 next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",

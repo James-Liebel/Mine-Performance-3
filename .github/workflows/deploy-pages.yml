@@ -1,0 +1,67 @@
+# Deploy this repo as a static site to GitHub Pages.
+# Each repo builds with its own base path (e.g. /Mine-Performance-3).
+# Enable in repo: Settings → Pages → Source: GitHub Actions.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAGES_DEPLOY: '1'
+      BASE_PATH: /${{ github.event.repository.name }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install
+        run: npm ci
+
+      # Static export does not support API routes or dynamic admin routes; move aside so build succeeds.
+      - name: Stash API and admin for static export
+        run: |
+          if [ -d app/api ]; then mv app/api app/_api_gh_pages; fi
+          if [ -d app/admin ]; then mv app/admin app/_admin_gh_pages; fi
+
+      - name: Build for GitHub Pages
+        run: npm run build
+
+      - name: Restore API and admin
+        run: |
+          if [ -d app/_api_gh_pages ]; then mv app/_api_gh_pages app/api; fi
+          if [ -d app/_admin_gh_pages ]; then mv app/_admin_gh_pages app/admin; fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
