@@ -2301,6 +2301,16 @@ input[type='radio'] {
 .story-module.alt-bg {
   background: var(--bg-subtle);
 }
+.story-module::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 0% 0%, var(--accent-muted), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(15, 23, 42, 0.04), transparent 55%);
+  opacity: 0.45;
+}
 .story-module-label {
   font-size: 0.75rem;
   font-weight: 600;

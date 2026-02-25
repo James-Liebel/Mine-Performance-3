@@ -35,7 +35,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div style={{ padding: '1rem 0' }}>
+      <div style={{ padding: '1rem 0' }} data-testid="contact-form-success">
         <p style={{ color: 'var(--success)', fontWeight: 600, marginBottom: '0.5rem' }}>
           ✓ Message sent!
         </p>
@@ -50,7 +50,7 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} aria-label="Contact form">
       {error && (
-        <p role="alert" style={{ color: 'var(--danger, #dc2626)', marginBottom: '1rem', fontSize: '0.9rem' }}>
+        <p role="alert" data-testid="contact-form-error" style={{ color: 'var(--danger, #dc2626)', marginBottom: '1rem', fontSize: '0.9rem' }}>
           {error}
         </p>
       )}

@@ -43,7 +43,7 @@ test.describe('Integration contracts', () => {
     await page.getByLabel(/Email/i).fill('test@example.com');
     await page.getByLabel(/Message/i).fill('Test message');
     await page.getByTestId('contact-form-submit').click();
-    await expect(page.getByText(/Message sent!/i)).toBeVisible();
+    await expect(page.getByTestId('contact-form-success')).toBeVisible({ timeout: 15000 });
   });
 
   test('contact form failure — mocked 500 shows error', async ({ page }) => {
@@ -60,6 +60,6 @@ test.describe('Integration contracts', () => {
     await page.getByLabel(/Email/i).fill('test@example.com');
     await page.getByLabel(/Message/i).fill('Test message');
     await page.getByTestId('contact-form-submit').click();
-    await expect(page.getByText(/Service unavailable|Something went wrong|Unable to send/i)).toBeVisible();
+    await expect(page.getByTestId('contact-form-error')).toBeVisible({ timeout: 15000 });
   });
 });

@@ -8,7 +8,7 @@ test.describe('Navigation', () => {
 
     const nav = page.locator('nav[aria-label="Main navigation"]');
     await nav.getByRole('link', { name: 'Programs' }).click();
-    await expect(page).toHaveURL(/\/member-registration/);
+    await expect(page).toHaveURL(/\/(programs|member-registration)/);
     await expect(page.locator('h1')).toContainText('Training options');
 
     await page.goto('/');

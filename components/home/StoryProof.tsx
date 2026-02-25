@@ -59,8 +59,6 @@ export function StoryProof() {
           ))}
         </ul>
         <p className="features-links" style={{ marginTop: '1.5rem' }}>
-          <Link href="/portal"><EditableContent contentKey="story_proof_link_portal" fallback="Portal" as="span" /></Link>
-          <span className="dot" aria-hidden> · </span>
           <Link href="/coaches"><EditableContent contentKey="story_proof_link_coaches" fallback="Meet the coaches" as="span" /></Link>
           <span className="dot" aria-hidden> · </span>
           <Link href="/events"><EditableContent contentKey="story_proof_link_events" fallback="Upcoming events" as="span" /></Link>

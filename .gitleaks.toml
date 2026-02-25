@@ -1,3 +1,17 @@
+title = "Mine Performance Academy"
+
+[allowlist]
+description = "Allowlist for example env and mock data"
+paths = [
+  '''(?:^|/)\.env\.example$''',
+  '''(?:^|/)data/mock-.*\.json$''',
+  '''(?:^|/)package-lock\.json$''',
+  '''(?:^|/)\.next/''',
+  '''(?:^|/)node_modules/''',
+  '''(?:^|/)\.git/''',
+  '''(?:^|/)audit_output/full_audit\.json$''',
+]
+
 # Gitleaks config for secret scanning. Run: gitleaks detect --no-git --source .
 # See https://github.com/gitleaks/gitleaks
 

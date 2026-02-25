@@ -12,16 +12,34 @@ if (isProd) {
   if (!process.env.ADMIN_PASSWORD) missing.push('ADMIN_PASSWORD');
 
   if (missing.length > 0) {
-    console.error(
-      `[Security] Production requires: ${missing.join(', ')}. Admin login will be disabled until set.`
-    );
+    const msg = `[Security] Production requires: ${missing.join(
+      ', '
+    )}. Admin login will be disabled until set.`;
+    console.error(msg);
+  }
+
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  const memberEmail = process.env.MEMBER_EMAIL;
+  const memberPassword = process.env.MEMBER_PASSWORD;
+
+  const usingDemoCreds =
+    adminEmail === 'admin@mineperformance.com' ||
+    adminPassword === 'admin' ||
+    memberEmail === 'member@mineperformance.com' ||
+    memberPassword === 'member';
+
+  if (usingDemoCreds) {
+    const msg =
+      '[Security] Demo credentials (admin/member) must not be used in production. Override ADMIN_EMAIL, ADMIN_PASSWORD, MEMBER_EMAIL, and MEMBER_PASSWORD with real values.';
+    console.error(msg);
   }
 
   const pwd = process.env.ADMIN_PASSWORD;
   if (pwd && (pwd.length < 8 || pwd === 'admin')) {
-    console.error(
-      '[Security] ADMIN_PASSWORD must be at least 8 characters and not "admin".'
-    );
+    const msg =
+      '[Security] ADMIN_PASSWORD must be at least 8 characters and not "admin".';
+    console.error(msg);
   }
 }
 

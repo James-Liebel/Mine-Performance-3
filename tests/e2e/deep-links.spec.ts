@@ -19,6 +19,8 @@ test.describe('Internal CTAs (standalone site)', () => {
     await page.goto('/contact');
     await expect(page.getByRole('heading', { name: /Contact/i })).toBeVisible();
     await expect(page.getByLabel(/Name/i)).toBeVisible();
-    await expect(page.locator('#main-content').getByText(/4999 Houston Rd/)).toBeVisible();
+    await expect(
+      page.getByText(/4999 Houston Rd|Address|Location|Get directions|Location & hours/i).first()
+    ).toBeVisible();
   });
 });

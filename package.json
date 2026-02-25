@@ -12,6 +12,7 @@
     "security:check": "npm run security:audit",
     "security:audit": "npm audit --audit-level=high",
     "security:audit:ci": "npm audit --audit-level=critical",
+    "security:secrets": "npx -y gitleaks detect --no-git --source . --config .gitleaks.toml --redact",
     "crawl": "npx tsx scripts/crawl-statstak.ts",
     "explore": "npx tsx scripts/explore.ts",
     "extract-leaderboard": "npx tsx scripts/extract-leaderboard.ts",
