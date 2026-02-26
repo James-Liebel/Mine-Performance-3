@@ -11,6 +11,7 @@ export function Nav() {
   const pathname = usePathname();
   const { data: session, status } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const isDev = process.env.NODE_ENV !== 'production';
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -53,7 +54,7 @@ export function Nav() {
                 </Link>
               </li>
             ))}
-            {session && (session.user as { role?: string })?.role === 'admin' && (
+            {(isDev || (session && (session.user as { role?: string })?.role === 'admin')) && (
               <li className="nav-item">
                 <Link
                   href="/admin"

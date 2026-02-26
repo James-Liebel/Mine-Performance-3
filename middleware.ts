@@ -4,6 +4,11 @@ import { getToken } from 'next-auth/jwt';
 
 /** Protect /admin routes (except /admin/login) */
 export async function middleware(req: NextRequest) {
+  const isProd = process.env.NODE_ENV === 'production';
+  if (!isProd) {
+    // In dev, don't gate /admin behind middleware so demos are smoother.
+    return NextResponse.next();
+  }
   const { pathname } = req.nextUrl;
   if (!pathname.startsWith('/admin')) {
     return NextResponse.next();
@@ -11,10 +16,7 @@ export async function middleware(req: NextRequest) {
   if (pathname === '/admin/login') {
     return NextResponse.next();
   }
-  const token = await getToken({
-    req,
-    secret: process.env.NEXTAUTH_SECRET,
-  });
+  const token = await getToken({ req });
   const role = (token as { role?: string } | null)?.role;
   if (!token || role !== 'admin') {
     const login = new URL('/admin/login', req.url);
