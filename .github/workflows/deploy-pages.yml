@@ -57,6 +57,16 @@ jobs:
           echo "Export directory contents:"
           ls -la out/
 
+      - name: Debug output directories
+        run: |
+          echo "PWD=$(pwd)"
+          ls -la
+          echo "Tree (2 levels):"
+          find . -maxdepth 2 -type d -print
+          echo "Check out/.next:"
+          if [ -d out ]; then echo "out exists"; ls -la out; else echo "out MISSING"; fi
+          if [ -d .next ]; then echo ".next exists"; ls -la .next; else echo ".next MISSING"; fi
+
       - name: Restore API and admin
         run: |
           if [ -d app/_api_gh_pages ]; then mv app/_api_gh_pages app/api; fi
