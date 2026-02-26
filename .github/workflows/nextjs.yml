@@ -28,6 +28,10 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAGES_DEPLOY: '1'
+      BASE_PATH: /${{ github.event.repository.name }}
+      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -73,8 +77,35 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Stash API and admin for static export
+        run: |
+          if [ -d app/api ]; then mv app/api app/_api_gh_pages; fi
+          if [ -d app/admin ]; then mv app/admin app/_admin_gh_pages; fi
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+      - name: Debug output directories
+        run: |
+          echo "PWD=$(pwd)"
+          ls -la
+          echo "Tree (2 levels):"
+          find . -maxdepth 2 -type d -print
+          echo "Check out/.next:"
+          if [ -d out ]; then echo "out exists"; ls -la out; else echo "out MISSING"; fi
+          if [ -d .next ]; then echo ".next exists"; ls -la .next; else echo ".next MISSING"; fi
+      - name: Restore API and admin
+        run: |
+          if [ -d app/_api_gh_pages ]; then mv app/_api_gh_pages app/api; fi
+          if [ -d app/_admin_gh_pages ]; then mv app/_admin_gh_pages app/admin; fi
+      - name: Verify export directory
+        run: |
+          echo "Verifying export output..."
+          if [ ! -d out ]; then
+            echo "::error::Build did not produce out/ directory. Check the build output above for errors."
+            ls -la .next 2>/dev/null || true
+            exit 1
+          fi
+          echo "Export directory contents:"
+          ls -la out/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
