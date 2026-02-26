@@ -1,6 +1,6 @@
-import { redirect } from 'next/navigation';
+import { CoachesRedirect } from './CoachesRedirect';
 
-/** Coaching staff is now on the About us page. Redirect old /coaches links. */
+/** Coaching staff is on the About page. Redirect /coaches so it works with static export and basePath. */
 export default function CoachesPage() {
-  redirect('/about#coaching-staff');
+  return <CoachesRedirect />;
 }

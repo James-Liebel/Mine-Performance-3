@@ -24,6 +24,7 @@ jobs:
     env:
       GITHUB_PAGES_DEPLOY: '1'
       BASE_PATH: /${{ github.event.repository.name }}
+      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
     steps:
       - uses: actions/checkout@v4
 

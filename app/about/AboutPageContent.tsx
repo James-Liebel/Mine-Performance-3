@@ -5,21 +5,29 @@ import { CoachesClient, type Coach } from '@/app/coaches/CoachesClient';
 import { PrimaryCTA } from '@/components/PrimaryCTA';
 import { EditableContent } from '@/components/EditableContent';
 
+const basePath = typeof process !== 'undefined' ? (process.env.NEXT_PUBLIC_BASE_PATH || process.env.BASE_PATH || '') : '';
+
+function fetchCoaches(): Promise<Coach[]> {
+  return fetch(`${basePath}/api/coaches`)
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error('Not found'))))
+    .then((data) => (Array.isArray(data) ? data : []))
+    .catch(() =>
+      fetch(`${basePath}/coaches-fallback.json`)
+        .then((r) => (r.ok ? r.json() : []))
+        .then((data) => (Array.isArray(data) ? data : []))
+        .catch(() => [])
+    );
+}
+
 export function AboutPageContent() {
   const [coaches, setCoaches] = useState<Coach[]>([]);
 
   useEffect(() => {
-    fetch('/api/coaches')
-      .then((r) => r.json())
-      .then((data) => setCoaches(Array.isArray(data) ? data : []))
-      .catch(() => setCoaches([]));
+    fetchCoaches().then(setCoaches);
   }, []);
 
   const refetchCoaches = () => {
-    fetch('/api/coaches')
-      .then((r) => r.json())
-      .then((data) => setCoaches(Array.isArray(data) ? data : []))
-      .catch(() => {});
+    fetchCoaches().then(setCoaches);
   };
 
   return (
@@ -71,6 +79,11 @@ export function AboutPageContent() {
             <p className="section-sub" style={{ maxWidth: '100%', marginBottom: '1.5rem' }}>
               <EditableContent contentKey="about_coaching_sub" fallback="Our coaches bring D1 playing experience, certifications, and hundreds of athletes trained. They're focused on measurable progress, smart programming, and long-term development." as="span" />
             </p>
+            {coaches.length === 0 && basePath && (
+              <p style={{ marginBottom: '1rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                Coach listings are available on the full site.
+              </p>
+            )}
             <CoachesClient coaches={coaches} onCoachChange={refetchCoaches} />
             <div style={{ marginTop: '2rem' }}>
               <PrimaryCTA />

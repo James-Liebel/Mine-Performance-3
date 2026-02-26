@@ -1,10 +1,12 @@
 /**
- * Centralized image paths. Place image files in public/images/ and reference here.
- * Usage: <Image src={IMAGES.logo.src} alt={IMAGES.logo.alt} width={36} height={36} />
+ * Centralized image paths. Place image files in public/ and reference here.
+ * basePath is used for GitHub Pages (e.g. /Mine-Performance-3) so images load correctly.
  */
+const basePath = typeof process !== 'undefined' ? (process.env.NEXT_PUBLIC_BASE_PATH || process.env.BASE_PATH || '') : '';
+
 export const IMAGES = {
   logo: {
-    src: '/mp-logo.png',
+    src: `${basePath}/mp-logo.png`,
     alt: 'Mine Performance logo',
     width: 36,
     height: 36,
