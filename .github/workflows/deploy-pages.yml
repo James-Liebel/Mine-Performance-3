@@ -47,12 +47,10 @@ jobs:
           if [ -d app/admin ]; then mv app/admin app/_admin_gh_pages; fi
 
       - name: Build for GitHub Pages
-        run: npm run build
-
-      - name: Check export output
         run: |
+          npm run build
           if [ ! -d out ]; then
-            echo "::error::Build did not produce out/ directory. Check the Build step for errors."
+            echo "::error::Build did not produce out/ directory. Check the build output above for errors."
             ls -la .next 2>/dev/null || true
             exit 1
           fi
@@ -87,9 +85,16 @@ jobs:
           fi
 
       - name: Upload artifact
+        if: hashFiles('out/**') != ''
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./out
+
+      - name: Fail if no export to upload
+        if: hashFiles('out/**') == ''
+        run: |
+          echo "::error::No export output (out/) found. Build did not produce a static export."
+          exit 1
 
   deploy:
     needs: build

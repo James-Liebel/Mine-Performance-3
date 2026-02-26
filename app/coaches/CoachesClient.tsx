@@ -3,6 +3,14 @@
 import { useState } from 'react';
 import { useSiteContent } from '@/contexts/SiteContentContext';
 
+const basePath = typeof process !== 'undefined' ? (process.env.NEXT_PUBLIC_BASE_PATH || process.env.BASE_PATH || '') : '';
+
+function coachImageSrc(src: string | null): string {
+  if (!src) return '';
+  if (src.startsWith('http://') || src.startsWith('https://')) return src;
+  return src.startsWith('/') ? basePath + src : src;
+}
+
 export interface Coach {
   id: string;
   name: string;
@@ -157,7 +165,7 @@ export function CoachesClient({
               {c.image ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={c.image}
+                  src={coachImageSrc(c.image)}
                   alt=""
                   className="coach-image"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
