@@ -49,6 +49,16 @@ jobs:
       - name: Build for GitHub Pages
         run: npm run build
 
+      - name: Check export output
+        run: |
+          if [ ! -d out ]; then
+            echo "::error::Build did not produce out/ directory. Check the Build step for errors."
+            ls -la .next 2>/dev/null || true
+            exit 1
+          fi
+          echo "Export directory contents:"
+          ls -la out/
+
       - name: Restore API and admin
         run: |
           if [ -d app/_api_gh_pages ]; then mv app/_api_gh_pages app/api; fi
