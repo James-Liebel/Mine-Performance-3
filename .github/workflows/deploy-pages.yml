@@ -54,6 +54,28 @@ jobs:
           if [ -d app/_api_gh_pages ]; then mv app/_api_gh_pages app/api; fi
           if [ -d app/_admin_gh_pages ]; then mv app/_admin_gh_pages app/admin; fi
 
+      - name: Copy public assets to export at basePath
+        run: |
+          REPO_NAME="${{ github.event.repository.name }}"
+          if [ -d "out/$REPO_NAME" ]; then
+            cp -r public/* "out/$REPO_NAME/" 2>/dev/null || true
+          fi
+          if [ -d public ] && [ ! -d "out/$REPO_NAME" ]; then
+            mkdir -p "out/$REPO_NAME"
+            cp -r public/* "out/$REPO_NAME/" 2>/dev/null || true
+          fi
+
+      - name: Verify export
+        run: |
+          REPO_NAME="${{ github.event.repository.name }}"
+          echo "Export root:"
+          ls -la out/
+          if [ -d "out/$REPO_NAME" ]; then
+            echo "BasePath contents:"
+            ls -la "out/$REPO_NAME/"
+            test -f "out/$REPO_NAME/coaches-fallback.json" || (echo "Missing coaches-fallback.json" && exit 1)
+          fi
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
