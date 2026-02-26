@@ -4,7 +4,13 @@ const basePath = process.env.BASE_PATH || '';
 
 const nextConfig = {
   reactStrictMode: true,
-  ...(isGhPages && { output: 'export' }),
+  ...(isGhPages && {
+    output: 'export',
+    images: {
+      // Static export (GitHub Pages) has no image optimization server; serve images directly
+      unoptimized: true,
+    },
+  }),
   ...(basePath && { basePath, assetPrefix: basePath }),
   ...(!isGhPages && {
   async headers() {
