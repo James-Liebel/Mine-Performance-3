@@ -5,10 +5,25 @@ export default function AdminDashboardPage() {
     <div className="container" style={{ paddingTop: '2rem', paddingBottom: '3rem' }}>
       <h1 style={{ marginBottom: '0.5rem' }}>Admin dashboard</h1>
       <p className="text-muted admin-page-desc" style={{ marginBottom: '2rem' }}>
-        You can change almost everything by clicking on it. Use the sections below to edit <strong>events & times</strong>, <strong>pricing</strong>, <strong>waivers</strong>, and <strong>users</strong>. No coding required.
+        You can change almost everything by clicking on it. Use the sections below to edit <strong>events & times</strong>, <strong>pricing</strong>, <strong>waivers</strong>, <strong>users</strong>, and view <strong>Stripe and Supabase overviews</strong>. No coding required.
       </p>
 
       <div className="admin-dashboard-grid">
+        <Link href="/admin/stripe" className="admin-dashboard-card card card-elevated">
+          <h3 style={{ marginTop: 0, marginBottom: '0.35rem' }}>Stripe</h3>
+          <p className="text-muted" style={{ margin: 0, fontSize: '0.9rem' }}>
+            View demo revenue and payments info and jump to your full Stripe Dashboard for detailed reports and payouts.
+          </p>
+          <span className="admin-dashboard-arrow" aria-hidden>→</span>
+        </Link>
+
+        <Link href="/admin/supabase" className="admin-dashboard-card card card-elevated">
+          <h3 style={{ marginTop: 0, marginBottom: '0.35rem' }}>Supabase data</h3>
+          <p className="text-muted" style={{ margin: 0, fontSize: '0.9rem' }}>
+            See a high-level view of athletes, programs, events, and registrations and open the Supabase project if you need deeper changes.
+          </p>
+          <span className="admin-dashboard-arrow" aria-hidden>→</span>
+        </Link>
         <Link href="/admin/events" className="admin-dashboard-card card card-elevated">
           <h3 style={{ marginTop: 0, marginBottom: '0.35rem' }}>Schedules & events</h3>
           <p className="text-muted" style={{ margin: 0, fontSize: '0.9rem' }}>

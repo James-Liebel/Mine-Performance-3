@@ -6,6 +6,8 @@ import { signOut } from 'next-auth/react';
 
 const ADMIN_LINKS = [
   { href: '/admin', label: 'Dashboard' },
+  { href: '/admin/stripe', label: 'Stripe' },
+  { href: '/admin/supabase', label: 'Supabase' },
   { href: '/admin/events', label: 'Schedules & events' },
   { href: '/admin/pricing', label: 'Pricing' },
   { href: '/admin/coaches', label: 'Coaches' },
