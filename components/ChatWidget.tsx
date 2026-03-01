@@ -69,7 +69,7 @@ export function ChatWidget() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   /** When admin is logged in, Edit site FAB is bottom-right; shift chat left so they don't overlap */
-  const chatRight = isAdmin ? '6.5rem' : '1.25rem';
+  const chatRight = isAdmin ? '9rem' : '1.25rem';
 
   const findMatches = useCallback(
     (query: string): { results: ReturnType<typeof matchFAQ>; combinedQuery: string } => {
